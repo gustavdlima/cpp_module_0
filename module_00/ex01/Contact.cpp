@@ -1,30 +1,42 @@
 #include <string>
 #include "Contact.hpp"
 
+////////////////////////////////////////////////////////// contructor
+Contact::Contact() {
+
+}
+
+////////////////////////////////////////////////////////// destructor
+Contact::~Contact() {
+
+}
 
 ////////////////////////////////////////////////////////// getters
 std::string Contact::getFirstName(void) const {
 	return (this->_firstName);
 }
 
-std::string Contact::getLastName(void) {
+std::string Contact::getLastName(void) const {
 	return (this->_lastName);
 }
 
-std::string Contact::getNickName(void) {
+std::string Contact::getNickName(void) const {
 	return (this->_nickName);
 }
 
-std::string Contact::getNumber(void) {
+std::string Contact::getNumber(void) const {
 	return (this->_number);
 }
 
-std::string Contact::getDarkestSecret(void) {
+std::string Contact::getDarkestSecret(void) const {
 	return (this->_darkestSecret);
 }
 
-////////////////////////////////////////////////////////// setters
+int	Contact::getIndex(void) const {
+	return (this->_index);
+}
 
+////////////////////////////////////////////////////////// setters
 
 void Contact::setFirstName(std::string name) {
 	this->_firstName = name;
@@ -45,3 +57,10 @@ void Contact::setNumber(std::string number) {
 void Contact::setDarkestSecret(std::string darkestSecret) {
 	this->_darkestSecret = darkestSecret;
 }
+
+void Contact::setIndex(int i) {
+	this->_index = i;
+}
+
+////////////////////////////////////////////////////////// utils
+

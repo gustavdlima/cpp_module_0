@@ -5,12 +5,17 @@
 
 class PhoneBook {
 	private:
-	Contact contacts[8];
+	Contact	contacts[8];
+
+	void		freeContactArray(void);
+	void		populateContact(int index);
+	bool		checkIfContactAlreadyPopulated(Contact contact);
+
 
 	public:
-	PhoneBook(void);
-	~PhoneBook(void);
-	bool	addContact(Contact newContact);
+			PhoneBook(void);
+			~PhoneBook(void);
+	bool	addContact(void);
 	void	printAllContacts(void);
 
 };

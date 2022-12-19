@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:32:22 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/19 01:04:09 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:58:27 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,31 @@
 
 int	main( void )
 {
-	PhoneBook	phonebook;
+	PhoneBook	phoneBook;
 	Contact		contact;
 	std::string	buffer;
 
+	std::cout << std::endl;
+	std::cout << "My awesome PhoneBook! " << std::endl;
+	std::cout << std::endl;
 //	the first test can check if setfirstname is working
 	while (1) {
+		std::cout << "What you need?" << std::endl;
+		std::cout << "- ADD" << std::endl;
+		std::cout << "- SEARCH" << std::endl;
+		std::cout << "- EXIT" << std::endl;
 		std::cin >> buffer;
-		std::cout << "Comando selecionado: " << buffer << std::endl;
-		if (buffer == "ADD") {
-			std::cout << "Nome:" << std::endl;
+
+		if (!buffer.compare("ADD")) {
+			phoneBook.addContact();
+			std::cout << "Contato " << " adicionado!" << std::endl;
+		}
+		if (!buffer.compare("SEARCH")) {
+			phoneBook.printAllContacts();
+		}
+		if (!buffer.compare("EXIT")) {
+			std::cout << "Bye ;)" << std::endl;
+			break ;
 		}
 
 		// contact.setFirstName("Samuel");
