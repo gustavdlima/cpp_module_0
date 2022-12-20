@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/20 04:24:30 by gusalves          #+#    #+#             */
+/*   Updated: 2022/12/20 04:24:33 by gusalves         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef __CONTACT_HPP
 #define __CONTACT_HPP
 
@@ -24,7 +36,6 @@ class Contact
 		std::string	getNumber(void) const;
 		std::string getDarkestSecret(void) const;
 
-
 		void 		setFirstName(std::string firstName);
 		void 		setLastName(std::string lastName);
 		void		setNickName(std::string newNickName);
@@ -34,6 +45,4 @@ class Contact
 
 };
 
-/* code */
 #endif
-
