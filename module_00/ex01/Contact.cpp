@@ -11,6 +11,16 @@ Contact::~Contact() {
 
 }
 
+//////////////////////////////////////////////////////////
+void		Contact::cleanAllFields(void) {
+	this->_firstName.clear();
+	this->_lastName.clear();
+	this->_nickName.clear();
+	this->_number.clear();
+	this->_darkestSecret.clear();
+}
+
+
 ////////////////////////////////////////////////////////// getters
 std::string Contact::getFirstName(void) const {
 	return (this->_firstName);

@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:32:22 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/20 04:25:43 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:56:24 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main( void )
 		std::cout << "- ADD" << std::endl;
 		std::cout << "- SEARCH" << std::endl;
 		std::cout << "- EXIT" << std::endl;
-		std::cin >> buffer;
+		std::getline(std::cin, buffer);
 		if (!buffer.compare("ADD")) {
 			phoneBook.addContact();
 		}
