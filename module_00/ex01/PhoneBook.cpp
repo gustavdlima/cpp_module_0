@@ -6,12 +6,13 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:39 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/22 00:12:26 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/22 22:19:35 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -27,21 +28,19 @@ PhoneBook::~PhoneBook() {
 void PhoneBook::addContact(void) {
 	for (;;)
 	{
-
-		std::cout << this->index << std::endl;
-
-		if (this->index == PHONEBOOK_SIZE)
+		if (this->index == PHONEBOOK_SIZE) {
 			this->index--;
+		}
 		if (!checkIfContactAlreadyPopulated(this->contacts[this->index]))
 		{
 			populateContact(this->index);
 			std::cout << "Contact "
 					  << this->contacts[this->index].getFirstName()
-					  << " added! His index is "
-					  << this->contacts[this->index].getIndex()
+					  << " added!"
 					  << std::endl;
-			if (this->index < (PHONEBOOK_SIZE))
+			if (this->index < (PHONEBOOK_SIZE)) {
 				this->index++;
+			}
 			break;
 		}
 		else
@@ -52,13 +51,50 @@ void PhoneBook::addContact(void) {
 	}
 }
 
-void PhoneBook::printAllContacts(void)
-{
+void PhoneBook::getContactIndexAndPrint(void) {
+	std::string			buffer;
+	std::stringstream	ss;
+	int			i;
+
+	for (;;) {
+		std::cout << "Choose the user index: " << std::endl;
+		std::getline(std::cin, buffer);
+		ss << buffer;
+		ss >> i;
+		if (i < 8 || i >= 0) {
+			if (checkIfContactAlreadyPopulated(this->contacts[i])) {
+				std::cout << i << std::endl;
+				std::cout << "|";
+				printSpace(1);
+				std::cout << this->contacts[i].getIndex();
+				std::cout << "|";
+				std::cout << std::endl;
+				std::cout << "|";
+				truncateAndPrintString(this->contacts[i].getFirstName());
+				std::cout << "|";
+				std::cout << std::endl;
+				std::cout << "|";
+				truncateAndPrintString(this->contacts[i].getLastName());
+				std::cout << "|";
+				std::cout << std::endl;
+				std::cout << "|";
+				truncateAndPrintString(this->contacts[i].getNickName());
+				std::cout << "|" << std::endl;
+				break;
+			} else {
+				std::cout << "The index is out of range or wrong, try again!"
+					<< std::endl;
+			}
+		}
+	}
+}
+
+void PhoneBook::printAllContacts(void) {
 	for (int i = 0; i < PHONEBOOK_SIZE; i++)
 	{
 		if (checkIfContactAlreadyPopulated(this->contacts[i])) {
 			std::cout << "|";
-			printSpace(9);
+			printSpace(1);
 			std::cout << this->contacts[i].getIndex();
 			std::cout << "|";
 			truncateAndPrintString(this->contacts[i].getFirstName());

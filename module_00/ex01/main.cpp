@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:32:22 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/20 18:56:24 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/22 02:20:12 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main( void )
 		}
 		if (!buffer.compare("SEARCH")) {
 			phoneBook.printAllContacts();
+			phoneBook.getContactIndexAndPrint();
 		}
 		if (!buffer.compare("EXIT")) {
 			std::cout << "Bye ;)" << std::endl;
