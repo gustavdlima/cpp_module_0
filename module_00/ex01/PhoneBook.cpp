@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:39 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/22 22:19:35 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/23 00:45:15 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void PhoneBook::getContactIndexAndPrint(void) {
 			} else {
 				std::cout << "The index is out of range or wrong, try again!"
 					<< std::endl;
+				break ;
 			}
 		}
 	}
