@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 15:25:40 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/26 19:12:11 by gusalves         ###   ########.fr       */
+/*   Created: 2022/12/27 00:40:11 by gusalves          #+#    #+#             */
+/*   Updated: 2022/12/27 00:40:15 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <string>
 
-Zombie::Zombie(std::string name) : name(name) {
-}
+class Weapon {
+	public:
+		void		setType(std::string type);
+		std::string	getType(void);
 
-Zombie::~Zombie() {
-	std::cout << this->name << " is going to the hole!" << std::endl;
-}
+	private:
+		std::string	type;
 
-void	Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+};

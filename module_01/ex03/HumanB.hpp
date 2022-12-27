@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 15:25:40 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/26 19:12:11 by gusalves         ###   ########.fr       */
+/*   Created: 2022/12/27 00:44:18 by gusalves          #+#    #+#             */
+/*   Updated: 2022/12/27 01:18:17 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-Zombie::Zombie(std::string name) : name(name) {
-}
+class HumanB {
 
-Zombie::~Zombie() {
-	std::cout << this->name << " is going to the hole!" << std::endl;
-}
+	public:
+		void	attack(void);
 
-void	Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+
+	private:
+		Weapon	axe;
+		std::string	name;
+
+};

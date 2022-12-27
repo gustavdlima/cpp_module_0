@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 15:25:40 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/26 19:12:11 by gusalves         ###   ########.fr       */
+/*   Created: 2022/12/23 00:48:58 by gusalves          #+#    #+#             */
+/*   Updated: 2022/12/23 03:52:28 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Account.hpp"
 
-Zombie::Zombie(std::string name) : name(name) {
+Account::Account() {
+
 }
 
-Zombie::~Zombie() {
-	std::cout << this->name << " is going to the hole!" << std::endl;
+Account::~Account() {
+
 }
 
-void	Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+int	Account::getNbAccounts(void) {
+	return (_nbAccounts);
+}
+
+int	Account::getTotalAmount( void ) {
+	return (_totalAmount);
+}
+
+int	Account::getNbDeposits( void ){
+	return (_totalNbDeposits);
+}
+
+int	Account::getNbWithdrawals( void ) {
+	return (_totalNbWithdrawals);
+}
+
+void	Account::displayAccountsInfos( void ) {
+
 }
