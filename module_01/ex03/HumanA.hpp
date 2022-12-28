@@ -6,22 +6,31 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:44:02 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/27 02:36:46 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/27 20:27:31 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef __HUMANA__HPP
+#define __HUMANA__HPP
+
 #include "Weapon.hpp"
+#include <iostream>
 
 class HumanA {
 
 	public:
-		void	attack(void);
-		HumanA(std::string name, std::string weaponType);
-		HumanA::HumanA();
-		~HumanA();
+					HumanA(std::string newName, Weapon &newWeapon);
+					~HumanA(void);
+
+		Weapon		&getWeapon(void);
+		void		setWeapon(Weapon &newWeapon);
+
+		void		attack(void);
 
 	private:
-		Weapon	sword;
 		std::string	name;
+		Weapon	&weapon;
 
 };
+
+#endif

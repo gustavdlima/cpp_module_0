@@ -6,27 +6,24 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 02:45:20 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/27 02:45:21 by gusalves         ###   ########.fr       */
+/*   Updated: 2022/12/27 21:15:51 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include <iostream>
+#include "HumanB.hpp"
 
-HumanA::HumanA(std::string name, std::string weaponType) : name(name) {
-	this->sword.setType("Sword");
+HumanB::HumanB(std::string newName) : name(newName), weapon(NULL) {
 }
 
-HumanA::HumanA() {
-
-}
-
-HumanA::~HumanA() {
+HumanB::~HumanB() {
 
 }
 
-void	HumanA::attack(void) {
-	std::cout << this->name << "attacks with their "
-		<< this->sword.getType() << std::endl;
+void	HumanB::setWeapon(Weapon &newWeapon) {
+	this->weapon = &newWeapon;
+}
 
+void	HumanB::attack(void) {
+	std::cout << this->name << " attacks with their "
+		<< this->weapon->getType() << std::endl;
 }
