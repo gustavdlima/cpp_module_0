@@ -34,6 +34,13 @@ class Fixed
 		Fixed operator*(const Fixed& object) const;
 		Fixed operator/(const Fixed& object) const;
 
+		bool operator==(const Fixed& object) const;
+		bool operator>=(const Fixed& object) const;
+		bool operator<=(const Fixed& object) const;
+		bool operator>(const Fixed& object) const;
+		bool operator<(const Fixed& object) const;
+		bool operator!=(const Fixed& object) const;
+
 		// Getters
 		int		getRawBits(void) const;
 
