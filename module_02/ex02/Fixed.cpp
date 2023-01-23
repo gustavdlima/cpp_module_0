@@ -109,6 +109,19 @@ bool Fixed::operator!=(const Fixed& object) const
 		return 0;
 }
 
+Fixed &Fixed::operator++(void)
+{
+	this->value++;
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed	tmp = *this;
+	this->value++;
+	return tmp;
+}
+
 // Getters
 int	Fixed::getRawBits(void) const {
 	return (this->value);
