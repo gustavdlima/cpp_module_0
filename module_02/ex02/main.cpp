@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:12:38 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/23 18:58:02 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:04:12 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,48 @@ int	main() {
 	// std::cout << b << std::endl;
 	// std::cout << Fixed::max( a, b ) << std::endl;
 
-	std::cout << "arithmetic operators overloading tests" << std::endl;
-	std::cout << "a = " << a << std::endl;
-	std::cout << "b = " << b << std::endl;
-	std::cout << "a + b = " << (a + b) << std::endl;
-	std::cout << std::endl;
-	std::cout << "a = " << a << std::endl;
-	std::cout << "b = " << b << std::endl;
-	std::cout << "a - b = " << (a - b) << std::endl;
-	std::cout << std::endl;
-	std::cout << "a = " << a << std::endl;
-	std::cout << "b = " << b << std::endl;
-	std::cout << "a * b = " << (a * b) << std::endl;
-	std::cout << std::endl;
-	std::cout << "a = " << a << std::endl;
-	std::cout << "b = " << b << std::endl;
-	std::cout << "a / b = " << (a / b) << std::endl;
+	// std::cout << "arithmetic operators overloading tests" << std::endl;
+	// std::cout << "a = " << a << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "a + b = " << (a + b) << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "a = " << a << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "a - b = " << (a - b) << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "a = " << a << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "a * b = " << (a * b) << std::endl;
+	// std::cout << std::endl;
+	// std::cout << "a = " << a << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "a / b = " << (a / b) << std::endl;
 
 	std::cout << "comparasion operators overloading tests" << std::endl;
-
-
-
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a > b? " << (a > b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a < b? " << (a < b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a >= b? " << (a >= b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a <= b? " << (a <= b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a == b? " << (a == b) << std::endl;
+	std::cout << std::endl;
+	std::cout << "a = " << a << std::endl;
+	std::cout << "b = " << b << std::endl;
+	std::cout << "a != b? " << (a != b) << std::endl;
+	std::cout << std::endl;
 
 	return 0;
 

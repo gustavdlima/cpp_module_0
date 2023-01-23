@@ -63,7 +63,7 @@ Fixed Fixed::operator/(const Fixed& object) const
 
 bool Fixed::operator==(const Fixed& object) const
 {
-	if ((this->toFloat()) == (object.toFloat()));
+	if ((this->toFloat()) == (object.toFloat()))
 		return 1;
 	else
 		return 0;
@@ -71,7 +71,7 @@ bool Fixed::operator==(const Fixed& object) const
 
 bool Fixed::operator>(const Fixed& object) const
 {
-	if ((this->toFloat()) > (object.toFloat()));
+	if ((this->toFloat()) > (object.toFloat()))
 		return 1;
 	else
 		return 0;
@@ -79,7 +79,7 @@ bool Fixed::operator>(const Fixed& object) const
 
 bool Fixed::operator<(const Fixed& object) const
 {
-	if ((this->toFloat()) < (object.toFloat()));
+	if ((this->toFloat()) < (object.toFloat()))
 		return 1;
 	else
 		return 0;
@@ -87,7 +87,7 @@ bool Fixed::operator<(const Fixed& object) const
 
 bool Fixed::operator>=(const Fixed& object) const
 {
-	if ((this->toFloat()) >= (object.toFloat()));
+	if ((this->toFloat()) >= (object.toFloat()))
 		return 1;
 	else
 		return 0;
@@ -95,7 +95,7 @@ bool Fixed::operator>=(const Fixed& object) const
 
 bool Fixed::operator<=(const Fixed& object) const
 {
-	if ((this->toFloat()) <= (object.toFloat()));
+	if ((this->toFloat()) <= (object.toFloat()))
 		return 1;
 	else
 		return 0;
@@ -103,7 +103,7 @@ bool Fixed::operator<=(const Fixed& object) const
 
 bool Fixed::operator!=(const Fixed& object) const
 {
-	if ((this->toFloat()) != (object.toFloat()));
+	if ((this->toFloat()) != (object.toFloat()))
 		return 1;
 	else
 		return 0;
