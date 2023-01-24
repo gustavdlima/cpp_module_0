@@ -109,16 +109,33 @@ bool Fixed::operator!=(const Fixed& object) const
 		return 0;
 }
 
+//Overloading the prefix increment operator
 Fixed &Fixed::operator++(void)
 {
 	this->value++;
 	return *this;
 }
 
+//Overloading the postfix increment operator
 Fixed Fixed::operator++(int)
 {
 	Fixed	tmp = *this;
 	this->value++;
+	return tmp;
+}
+
+//Overloading the prefix decrement operator
+Fixed &Fixed::operator--(void)
+{
+	this->value--;
+	return *this;
+}
+
+//Overloading the postfix increment operator
+Fixed Fixed::operator--(int)
+{
+	Fixed	tmp = *this;
+	this->value--;
 	return tmp;
 }
 
