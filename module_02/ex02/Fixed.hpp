@@ -45,6 +45,10 @@ class Fixed
 		Fixed	&operator--(void);
 		Fixed	operator--(int);
 
+		static Fixed	&min(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
+		static const Fixed &min(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2);
+		static Fixed	&max(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
+		static const Fixed	&max(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2);
 
 		// Getters
 		int		getRawBits(void) const;

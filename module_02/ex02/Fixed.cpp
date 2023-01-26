@@ -157,3 +157,23 @@ float Fixed::toFloat( void ) const {
 int Fixed::toInt( void ) const {
 	return (this->value >> this->numberOfFractionalBits);
 }
+
+Fixed	&Fixed::min(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2)
+{
+	return (fixedPointNumber1 > fixedPointNumber2 ? fixedPointNumber2 : fixedPointNumber1);
+}
+
+const Fixed &Fixed::min(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2)
+{
+	return (fixedPointNumber1 > fixedPointNumber2 ? fixedPointNumber2 : fixedPointNumber1);
+}
+
+Fixed	&Fixed::max(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2)
+{
+	return (fixedPointNumber1 > fixedPointNumber2 ? fixedPointNumber1 : fixedPointNumber2);
+}
+
+const Fixed	&Fixed::max(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2)
+{
+	return (fixedPointNumber1 > fixedPointNumber2 ? fixedPointNumber1 : fixedPointNumber2);
+}
