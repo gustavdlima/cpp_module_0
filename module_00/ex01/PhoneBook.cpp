@@ -6,13 +6,10 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/26 21:41:39 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/27 01:28:23 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
-#include <sstream>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -51,47 +48,62 @@ void PhoneBook::addContact(void) {
 	}
 }
 
+bool	PhoneBook::verifyInput(std::string input)
+{
+	for(size_t	i = 0; i < input.length(); i++)
+		if (!isdigit(input[i]))
+			return 0;
+	return 1;
+}
+
 void PhoneBook::getContactIndexAndPrint(void) {
+	int					i;
 	std::string			buffer;
 	std::stringstream	ss;
-	int			i;
 
+	std::cout << std::setfill (' ') << std::setw (10);
 	for (;;) {
 		std::cout << "Choose the user index: " << std::endl;
 		std::getline(std::cin, buffer);
-		ss << buffer;
+		ss.str(buffer);
+		if (!verifyInput(ss.str())) {
+			std::cout << "Only numbers allowed." << std::endl;
+			continue ;
+		}
 		ss >> i;
-		if (i < 8 || i >= 0) {
+		ss.clear();
+		if (i >= 0 && i < 8) {
 			if (checkIfContactAlreadyPopulated(this->contacts[i])) {
 				std::cout << "|";
-				printSpace(1);
 				std::cout << this->contacts[i].getIndex();
 				std::cout << "|";
 				std::cout << std::endl;
 				std::cout << "|";
-				truncateAndPrintString(this->contacts[i].getFirstName());
+				std::cout << this->contacts[i].getFirstName();
 				std::cout << "|";
 				std::cout << std::endl;
 				std::cout << "|";
-				truncateAndPrintString(this->contacts[i].getLastName());
+				std::cout << this->contacts[i].getLastName();
 				std::cout << "|";
 				std::cout << std::endl;
 				std::cout << "|";
-				truncateAndPrintString(this->contacts[i].getNickName());
+				std::cout <<this->contacts[i].getNickName();
 				std::cout << "|" << std::endl;
 				std::cout << "|";
-				truncateAndPrintString(this->contacts[i].getPhoneNumber());
+				std::cout <<this->contacts[i].getPhoneNumber();
 				std::cout << "|" << std::endl;
 				std::cout << "|";
-				truncateAndPrintString(this->contacts[i].getDarkestSecret());
+				std::cout <<this->contacts[i].getDarkestSecret();
 				std::cout << "|" << std::endl;
 				break;
 			} else {
+				std::cout << "There is no contact with this index!"
+					<< std::endl;
+			}
+		} else {
 				std::cout << "The index is out of range or wrong, try again!"
 					<< std::endl;
-				break ;
 			}
-		}
 	}
 }
 
@@ -100,13 +112,16 @@ void PhoneBook::printAllContacts(void) {
 	{
 		if (checkIfContactAlreadyPopulated(this->contacts[i])) {
 			std::cout << "|";
-			printSpace(1);
+			std::cout << std::setfill (' ') << std::setw (10);
 			std::cout << this->contacts[i].getIndex();
 			std::cout << "|";
+			std::cout << std::setfill (' ') << std::setw (10);
 			truncateAndPrintString(this->contacts[i].getFirstName());
 			std::cout << "|";
+			std::cout << std::setfill (' ') << std::setw (10);
 			truncateAndPrintString(this->contacts[i].getLastName());
 			std::cout << "|";
+			std::cout << std::setfill (' ') << std::setw (10);
 			truncateAndPrintString(this->contacts[i].getNickName());
 			std::cout << "|" << std::endl;
 		} else {
@@ -115,19 +130,19 @@ void PhoneBook::printAllContacts(void) {
 	}
 }
 
+void	PhoneBook::printSpace(int number) {
+	for(int	i = 0; i < (10 - number); i++)
+		std::cout << " ";
+}
+
 void PhoneBook::truncateAndPrintString(std::string data) {
 	if (((int)data.size()) >= 10) {
 		data.insert(9, ".");
 		std::cout << data.substr(0, 10);
-	}else {
-		printSpace(((int)data.size()));
+	} else {
+		std::cout << std::setfill (' ') << std::setw (10);
 		std::cout << data;
 	}
-}
-
-void	PhoneBook::printSpace(int number) {
-	for(int	i = 0; i < (10 - number); i++)
-		std::cout << " ";
 }
 
 std::string PhoneBook::userInput(std::string option) {

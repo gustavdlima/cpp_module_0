@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:48 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/26 21:31:04 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/27 01:03:54 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #define PHONEBOOK_SIZE	8
 
 #include "Contact.hpp"
+#include <iomanip>
+#include <string>
+#include <iostream>
+#include <sstream>
 
 class PhoneBook {
 	private:
@@ -29,6 +33,7 @@ class PhoneBook {
 	void 			truncateAndPrintString(std::string data);
 	void			printSpace(int number);
 	void			cleanContactFields(Contact contact);
+	bool			verifyInput(std::string input);
 
 	public:
 					PhoneBook(void);
