@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Account.cpp                                        :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 00:48:58 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/23 03:52:28 by gusalves         ###   ########.fr       */
+/*   Created: 2023/01/10 15:49:54 by gusalves          #+#    #+#             */
+/*   Updated: 2023/01/17 22:24:48 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Account.hpp"
+#ifndef __HARL_HPP
+#define __HARL_HPP
 
-Account::Account() {
+#include <string>
+#include <iostream>
 
-}
+class Harl {
+	private:
+		void debug(void);
+		void info(void);
+		void warning(void);
+		void error(void);
 
-Account::~Account() {
+	public:
+		Harl();
+		~Harl();
+		void complain(std::string level);
 
-}
-
-int	Account::getNbAccounts(void) {
-	return (_nbAccounts);
-}
-
-int	Account::getTotalAmount( void ) {
-	return (_totalAmount);
-}
-
-int	Account::getNbDeposits( void ){
-	return (_totalNbDeposits);
-}
-
-int	Account::getNbWithdrawals( void ) {
-	return (_totalNbWithdrawals);
-}
-
-void	Account::displayAccountsInfos( void ) {
-
-}
+};
+#endif //__HARL_HPP

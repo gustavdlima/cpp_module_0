@@ -1,14 +1,14 @@
-NAME			= bankSystem
+NAME		= Fixed
 
-CC 				= g++
-CFLAGS 			= -Wall -Wextra -Werror -std=c++98
+CC			= g++
+CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC				= tests.cpp Account.cpp
+SRC			= Fixed.cpp main.cpp
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $(<:%.cpp=%.o)
 
-OBJ				= $(SRC:%.cpp=%.o)
+OBJ			= $(SRC:%.cpp=%.o)
 
 all: $(NAME)
 
@@ -19,6 +19,7 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
+	rm -rf $(FILE)
 	rm -rf $(NAME)
 
 re: fclean all
