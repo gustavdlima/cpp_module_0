@@ -3,6 +3,7 @@
 // Constructors
 Fixed::Fixed() : value(0)
 {
+
 }
 
 Fixed::Fixed(const int num)
@@ -140,21 +141,26 @@ Fixed Fixed::operator--(int)
 }
 
 // Getters
-int	Fixed::getRawBits(void) const {
+int	Fixed::getRawBits(void) const
+{
 	return (this->value);
 }
 
 // Setters
-void Fixed::setRawBits(const int value) {
+void Fixed::setRawBits(const int value)
+{
 	this->value = value;
 }
 
 // Member Functions
-float Fixed::toFloat( void ) const {
+
+float Fixed::toFloat( void ) const
+{
 	return (this->value / (double)(1 << this->numberOfFractionalBits));
 }
 
-int Fixed::toInt( void ) const {
+int Fixed::toInt( void ) const
+{
 	return (this->value >> this->numberOfFractionalBits);
 }
 

@@ -19,52 +19,52 @@ class Fixed
 {
 	public:
 		// Constructors
-		Fixed();
-		Fixed(const int num);
-		Fixed(const float num);
-		Fixed(const Fixed &copy);
+							Fixed();
+							Fixed(const int num);
+							Fixed(const float num);
+							Fixed(const Fixed &copy);
 
 		// Destructor
-		~Fixed();
+							~Fixed();
 
 		// Operators
-		Fixed &operator=(Fixed const& assign);
-		Fixed operator+(const Fixed& object) const;
-		Fixed operator-(const Fixed& object) const;
-		Fixed operator*(const Fixed& object) const;
-		Fixed operator/(const Fixed& object) const;
+		Fixed				&operator=(Fixed const& assign);
+		Fixed				operator+(const Fixed& object) const;
+		Fixed				operator-(const Fixed& object) const;
+		Fixed				operator*(const Fixed& object) const;
+		Fixed				operator/(const Fixed& object) const;
 
-		bool	operator==(const Fixed& object) const;
-		bool	operator>=(const Fixed& object) const;
-		bool	operator<=(const Fixed& object) const;
-		bool	operator>(const Fixed& object) const;
-		bool	operator<(const Fixed& object) const;
-		bool	operator!=(const Fixed& object) const;
-		Fixed	&operator++(void);
-		Fixed	operator++(int);
-		Fixed	&operator--(void);
-		Fixed	operator--(int);
+		bool				operator==(const Fixed& object) const;
+		bool				operator>=(const Fixed& object) const;
+		bool				operator<=(const Fixed& object) const;
+		bool				operator>(const Fixed& object) const;
+		bool				operator<(const Fixed& object) const;
+		bool				operator!=(const Fixed& object) const;
+		Fixed				&operator++(void);
+		Fixed				operator++(int);
+		Fixed				&operator--(void);
+		Fixed				operator--(int);
 
-		static Fixed	&min(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
-		static const Fixed &min(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2);
-		static Fixed	&max(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
+		static Fixed		&min(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
+		static const Fixed	&min(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2);
+		static Fixed		&max(Fixed &fixedPointNumber1, Fixed &fixedPointNumber2);
 		static const Fixed	&max(const Fixed &fixedPointNumber1, const Fixed &fixedPointNumber2);
 
 		// Getters
-		int		getRawBits(void) const;
+		int					getRawBits(void) const;
 
 		// Setters
-		void	setRawBits(const int value);
+		void				setRawBits(const int value);
 
 		// Member Functions
-		float toFloat( void ) const;
-		int toInt( void ) const;
+		float				toFloat( void ) const;
+		int					toInt( void ) const;
 
 	private:
 		int					value;
 		static const int	numberOfFractionalBits = 8;
 };
 
-std::ostream &operator<<(std::ostream& out,Fixed const &object);
+std::ostream				&operator<<(std::ostream& out,Fixed const &object);
 
 #endif
