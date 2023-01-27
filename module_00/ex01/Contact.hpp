@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:30 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/20 16:44:48 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:40:33 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Contact
 		std::string	getFirstName(void) const;
 		std::string getLastName(void) const;
 		std::string	getNickName(void) const;
-		std::string	getNumber(void) const;
+		std::string	getPhoneNumber(void) const;
 		std::string getDarkestSecret(void) const;
 
 		void 		setFirstName(std::string firstName);

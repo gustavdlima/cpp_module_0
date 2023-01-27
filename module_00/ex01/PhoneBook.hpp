@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:48 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/22 02:51:45 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:31:04 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class PhoneBook {
 	private:
 	int		index;
 	int		oldest;
-
 	Contact	contacts[PHONEBOOK_SIZE];
 
 	std::string		userInput(std::string option);

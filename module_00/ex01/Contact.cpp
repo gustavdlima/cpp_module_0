@@ -34,7 +34,7 @@ std::string Contact::getNickName(void) const {
 	return (this->_nickName);
 }
 
-std::string Contact::getNumber(void) const {
+std::string Contact::getPhoneNumber(void) const {
 	return (this->_number);
 }
 

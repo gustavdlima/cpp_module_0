@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:32:22 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/26 03:15:33 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:32:16 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main( void )
 	std::string	buffer;
 
 	std::cout << "-- My awesome PhoneBook! --" << std::endl;
-	std::cout << std::endl;
 	while (1) {
 		std::cout << "What you need?" << std::endl;
 		std::cout << "- ADD" << std::endl;

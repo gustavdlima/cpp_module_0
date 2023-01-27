@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 04:24:39 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/23 00:45:15 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/26 21:41:39 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void PhoneBook::getContactIndexAndPrint(void) {
 		ss >> i;
 		if (i < 8 || i >= 0) {
 			if (checkIfContactAlreadyPopulated(this->contacts[i])) {
-				std::cout << i << std::endl;
 				std::cout << "|";
 				printSpace(1);
 				std::cout << this->contacts[i].getIndex();
@@ -79,6 +78,12 @@ void PhoneBook::getContactIndexAndPrint(void) {
 				std::cout << std::endl;
 				std::cout << "|";
 				truncateAndPrintString(this->contacts[i].getNickName());
+				std::cout << "|" << std::endl;
+				std::cout << "|";
+				truncateAndPrintString(this->contacts[i].getPhoneNumber());
+				std::cout << "|" << std::endl;
+				std::cout << "|";
+				truncateAndPrintString(this->contacts[i].getDarkestSecret());
 				std::cout << "|" << std::endl;
 				break;
 			} else {
