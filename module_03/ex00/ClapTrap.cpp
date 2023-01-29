@@ -85,9 +85,15 @@ void ClapTrap::setAttackDamage(int  number)
 void ClapTrap::attack(const std::string& target)
 {
 	if (this->hitPoints == 0)
+	{
 		std::cout << FRED("you're dead") << std::endl;
+		return ;
+	}
 	else if (this->energyPoints == 0)
+	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
+		return ;
+	}
 	std::cout << KCYN << "ClapTrap " << this->name << RST << FRED(" attacks ") << KMAG << target << RST << " causing " << this->attackDamage << " points of damage!" << std::endl;
 	std::cout << FCYN("-1 energy point.") << std::endl;
 	this->energyPoints -= 1;
@@ -101,9 +107,15 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->hitPoints == 0)
+	{
 		std::cout << FRED("you're dead") << std::endl;
+		return ;
+	}
 	else if (this->energyPoints == 0)
+	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
+		return ;
+	}
 	std::cout << KGRN << "healed " << amount << " hit points." << RST << std::endl;
 	std::cout << FCYN("-1 energy point.") << std::endl;
 	this->hitPoints += amount;
