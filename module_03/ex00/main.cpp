@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:12:38 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/28 22:09:22 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:40:29 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 #include <iostream>
 
 int	main() {
-	ClapTrap	claptrap("Parvathi");
+	ClapTrap	parvathi("Parvathi");
 
-	std::cout << claptrap.getName() << std::endl;
-	claptrap.attack("kranklun");
-	claptrap.takeDamage(5);
-	claptrap.beRepaired(5);
+	std::cout << parvathi.getName() << std::endl;
+	std::cout << parvathi.getName() << std::endl;
+
+	//	claptrap tests
+	parvathi.attack("kranklun");
+	parvathi.takeDamage(5);
+	parvathi.beRepaired(5);
 
 	return 0;
 

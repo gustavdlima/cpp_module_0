@@ -21,9 +21,15 @@ class ClapTrap
 
 		// Getters
 		std::string getName();
+		int ClapTrap::getHitPoints();
+		int ClapTrap::getEnergyPoints();
+		int ClapTrap::getAttackDamage();
 
 		//Setters
 		void		setName(std::string  newName);
+		void		setHitPoints(int  newName);
+		void		setEnergyPoints(int  number);
+		void		setAttackDamage(int  number);
 
 		// others
 		void attack(const std::string& target);
@@ -32,9 +38,9 @@ class ClapTrap
 
 	private:
 		std::string	name;
-		int			hitPoint = 10;
-		int			energyPoints = 10;
-		int			attackDamage = 0;
+		int			hitPoints;
+		int			energyPoints;
+		int			attackDamage;
 
 };
 
