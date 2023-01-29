@@ -4,9 +4,6 @@
 ClapTrap::ClapTrap()
 {
 	std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string newName) : name(newName)
@@ -51,7 +48,7 @@ void		ClapTrap::setName(std::string  newName) {
 // Others
 void ClapTrap::attack(const std::string& target)
 {
-	std::cout << KCYN << "ClapTrap " << this->name << RST << FRED(" attacks ") << target << " causing " << KMAG <<this->attackDamage << RST << " points of damage!" << std::endl;
+	std::cout << KCYN << "ClapTrap " << this->name << RST << FRED(" attacks ") << KMAG << target << RST << " causing " << this->attackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
