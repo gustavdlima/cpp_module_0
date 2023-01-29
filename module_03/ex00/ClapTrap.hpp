@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include "colors.hpp"
 
 class ClapTrap
 {
@@ -24,8 +25,16 @@ class ClapTrap
 		//Setters
 		void		setName(std::string  newName);
 
+		// others
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+
 	private:
 		std::string	name;
+		int			hitPoints;
+		int			energyPoints;
+		int			attackDamage;
 
 };
 
