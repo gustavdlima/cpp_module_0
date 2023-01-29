@@ -51,16 +51,15 @@ void		ClapTrap::setName(std::string  newName) {
 // Others
 void ClapTrap::attack(const std::string& target)
 {
-	std::cout << "ClapTrap "<< this->name << KRED " attacks " << target << " causing " << this->attackDamage << RST << " points of damage!" << std::endl;
-
+	std::cout << KCYN << "ClapTrap " << this->name << RST << FRED(" attacks ") << target << " causing " << KMAG <<this->attackDamage << RST << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	(void)amount;
+	std::cout << KRED << "loosed " << amount << " points of damage!" << RST << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	(void)amount;
+	std::cout << KGRN << "healed " << amount << " hit points." << RST << std::endl;
 }

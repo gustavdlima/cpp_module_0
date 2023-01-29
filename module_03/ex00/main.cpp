@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:12:38 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/28 21:59:03 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/01/28 22:09:22 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main() {
 
 	std::cout << claptrap.getName() << std::endl;
 	claptrap.attack("kranklun");
+	claptrap.takeDamage(5);
+	claptrap.beRepaired(5);
 
 	return 0;
 
