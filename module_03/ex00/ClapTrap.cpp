@@ -3,7 +3,7 @@
 // Constructors
 ClapTrap::ClapTrap()
 {
-	std::cout << FYEL("Default Constructor called of ClapTrap") << std::endl;
+	std::cout << FYEL("Default Constructor called of ClapTrap ") << this->name << std::endl;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string newName) : name(newName)
 {
-	std::cout << FBLU("Default Constructor called of ClapTrap") << std::endl;
+	std::cout << FBLU("Default Constructor called of ClapTrap ") << this->name << std::endl;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
@@ -20,14 +20,14 @@ ClapTrap::ClapTrap(std::string newName) : name(newName)
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
 	(void) copy;
-	std::cout << "Copy Constructor called of ClapTrap" << std::endl;
+	std::cout << "Copy Constructor called of ClapTrap " << this->name << std::endl;
 }
 
 
 // Destructor
 ClapTrap::~ClapTrap()
 {
-	std::cout << FRED("Destructor called of ClapTrap") << std::endl;
+	std::cout << FRED("Destructor called of ClapTrap ") << this->name << std::endl;
 }
 
 
@@ -89,19 +89,20 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << FRED("you're dead") << std::endl;
 		return ;
 	}
-	else if (this->energyPoints == 0)
+	if (this->energyPoints == 0)
 	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
 		return ;
 	}
 	std::cout << KCYN << "ClapTrap " << this->name << RST << FRED(" attacks ") << KMAG << target << RST << " causing " << this->attackDamage << " points of damage!" << std::endl;
 	std::cout << FCYN("-1 energy point.") << std::endl;
-	this->energyPoints -= 1;
+	this->energyPoints--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << KRED << "losed " << amount << " points of damage!" << RST << std::endl;
+	std::cout << "Claptrap " << this->name << KRED << " losed " << amount << " points of damage!" << RST << std::endl;
+	this->hitPoints -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -111,13 +112,13 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << FRED("you're dead") << std::endl;
 		return ;
 	}
-	else if (this->energyPoints == 0)
+	if (this->energyPoints == 0)
 	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
 		return ;
 	}
-	std::cout << KGRN << "healed " << amount << " hit points." << RST << std::endl;
-	std::cout << FCYN("-1 energy point.") << std::endl;
+	std::cout << "Claptrap " << this->name << KGRN << " healed " << amount << " hit points." << RST << std::endl;
 	this->hitPoints += amount;
-	this->energyPoints -= 1;
+	std::cout << FCYN("-1 energy point.") << std::endl;
+	this->energyPoints--;
 }

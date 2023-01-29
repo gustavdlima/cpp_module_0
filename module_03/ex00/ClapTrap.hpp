@@ -9,21 +9,21 @@ class ClapTrap
 {
 	public:
 		// Constructors
-		ClapTrap();
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &copy);
+					ClapTrap();
+					ClapTrap(std::string name);
+					ClapTrap(const ClapTrap &copy);
 
 		// Destructor
-		~ClapTrap();
+					~ClapTrap();
 
 		// Operators
 		ClapTrap & operator=(const ClapTrap &assign);
 
 		// Getters
 		std::string getName();
-		int ClapTrap::getHitPoints();
-		int ClapTrap::getEnergyPoints();
-		int ClapTrap::getAttackDamage();
+		int			getHitPoints();
+		int			getEnergyPoints();
+		int			getAttackDamage();
 
 		//Setters
 		void		setName(std::string  newName);
@@ -32,9 +32,9 @@ class ClapTrap
 		void		setAttackDamage(int  number);
 
 		// others
-		void attack(const std::string& target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
+		void		attack(const std::string& target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
 
 	private:
 		std::string	name;
