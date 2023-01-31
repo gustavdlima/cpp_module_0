@@ -1,9 +1,9 @@
-NAME		= scavtrap
+NAME		= fragtrap
 
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC			= ScavTrap.cpp ClapTrap.cpp main.cpp
+SRC			= FragTrap.cpp ScavTrap.cpp ClapTrap.cpp main.cpp
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $(<:%.cpp=%.o)
