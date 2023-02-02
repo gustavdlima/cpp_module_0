@@ -17,9 +17,14 @@ class Cat : public Animal
 		// Destructor
 		~Cat();
 
+		Brain	*getBrain();
+		void	setBrain(Brain *newBrain);
+
+
 		void	makeSound() const;
 
 		// Operators
+    	Cat& operator=(Cat const& obj);
 
 	private:
 		std::string	type;

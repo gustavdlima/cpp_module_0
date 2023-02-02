@@ -16,8 +16,27 @@ Cat::~Cat()
 	delete this->brain;
 }
 
-
 void	Cat::makeSound() const
 {
 	std::cout << "meow meow" << std::endl;
+}
+
+// Operators
+Cat &Cat::operator=(Cat const& obj)
+{
+	std::cout << "\e[0;31mCat Copy assignment operator called \e[0m" << std::endl;
+	if (this != &obj) {
+		this->type = obj.getType();
+	}
+	return *this;
+}
+
+Brain	*Cat::getBrain()
+{
+	return this->brain;
+}
+
+void	Cat::setBrain(Brain *newBrain)
+{
+	this->brain = newBrain;
 }

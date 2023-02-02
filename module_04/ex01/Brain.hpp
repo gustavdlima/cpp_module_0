@@ -11,14 +11,20 @@ class Brain
 		Brain();
 		Brain(const Brain &copy);
 
+		std::string getIdeas(int index);
+
+		void	setIdeias(std::string ideia);
+
+
 		// Destructor
-		~Brain();
+		virtual ~Brain();
 
 		// Operators
-		Brain & operator=(const Brain &assign);
+		Brain & operator=(const Brain &obj);
 
 	private:
-	std::string	ideas[100];
+		std::string	ideas[100];
+		int index;
 };
 
 #endif

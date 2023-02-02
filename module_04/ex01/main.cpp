@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:45:01 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/01 21:32:23 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/02 01:52:43 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,32 @@ int	main() {
 
 	for(int	i = 0; i < 6; i++)
 	{
-		if (i < 3)
+		if (i < 3) {
 			arrayOfAnimals[i] = new Cat();
-		else
+			// ((Cat *)arrayOfAnimals[i])->setBrain(new Brain());
+
+		}
+		else {
 			arrayOfAnimals[i] = new Dog();
+			// ((Dog *)arrayOfAnimals[i])->setBrain(new Brain());
+		}
 	}
+
+	arrayOfAnimals[0]->makeSound();
+	arrayOfAnimals[3]->makeSound();
+	Animal* temp = arrayOfAnimals[0];
+	arrayOfAnimals[0] = arrayOfAnimals[3];
+	arrayOfAnimals[3] = temp;
+	arrayOfAnimals[0]->makeSound();
+	arrayOfAnimals[3]->makeSound();
+
+	Animal* catTemp = arrayOfAnimals[0];
+	std::cout << ((Cat *)catTemp)->getBrain()->getIdeas(0) << std::endl;
+	std::cout << ((Cat *)catTemp)->getBrain()->getIdeas(1) << std::endl;
+	((Cat *)catTemp)->getBrain()->setIdeias("invest in bitcoins");
+	std::cout << ((Cat *)catTemp)->getBrain()->getIdeas(2) << std::endl;
+	std::cout << ((Cat *)arrayOfAnimals[0])->getBrain()->getIdeas(2) << std::endl;
+
 	for (int i = 0; i < 6; i++)
 	{
 		delete arrayOfAnimals[i];

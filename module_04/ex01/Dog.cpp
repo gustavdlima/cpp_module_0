@@ -21,3 +21,13 @@ void	Dog::makeSound() const
 	std::cout << "au au" << std::endl;
 
 }
+
+Brain	*Dog::getBrain()
+{
+	return this->brain;
+}
+
+void	Dog::setBrain(Brain *newBrain)
+{
+	this->brain = newBrain;
+}

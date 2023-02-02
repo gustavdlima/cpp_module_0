@@ -17,6 +17,9 @@ class Dog : public Animal
 
 		// Destructor
 		~Dog();
+
+		Brain	*getBrain();
+		void	setBrain(Brain *newBrain);
 		void	makeSound() const;
 
 	private:

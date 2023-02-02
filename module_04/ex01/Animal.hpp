@@ -12,8 +12,13 @@ class Animal
 		// Constructors
 		Animal();
 
+		// CopyConstructor
+		Animal(const Animal &obj);
+
 		// Destructor
 		virtual ~Animal();
+
+
 
 		std::string	getType() const;
 		virtual void	makeSound() const;
