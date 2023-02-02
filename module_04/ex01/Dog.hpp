@@ -16,7 +16,7 @@ class Dog : public Animal
 		Dog();
 
 		// Destructor
-		virtual ~Dog();
+		~Dog();
 
 		Brain	*getBrain();
 		void	setBrain(Brain *newBrain);

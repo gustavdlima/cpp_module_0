@@ -17,7 +17,7 @@ class Brain
 
 
 		// Destructor
-		virtual ~Brain();
+		~Brain();
 
 		// Operators
 		Brain & operator=(const Brain &obj);

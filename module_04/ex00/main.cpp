@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:45:01 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/01 19:54:59 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/02 01:51:51 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int	main() {
 	std::cout << testDog.getType() << std::endl;
 	testDog.makeSound();
 
+	const Animal* tempAnimal = j;
+	j = meta;
+	std::cout << j->getType() << std::endl;
 
+	delete tempAnimal;
+	delete j;
+	delete i;
 	return 0;
 }

@@ -18,7 +18,7 @@ class Dog : public Animal
 		void	makeSound() const;
 
 	private:
-		const std::string	type = "Dog";
+		std::string	type;
 
 };
 

@@ -5,6 +5,7 @@
 Cat::Cat() : Animal()
 {
 	std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
+	this->type = "Cat";
 	Animal::type = this->type;
 }
 

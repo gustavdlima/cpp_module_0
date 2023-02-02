@@ -11,7 +11,7 @@ class WrongAnimal
 		WrongAnimal();
 
 		// Destructor
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
 
 		std::string	getType() const;

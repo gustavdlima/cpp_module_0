@@ -21,7 +21,7 @@ class Cat : public Animal
 		// Operators
 
 	private:
-		const std::string	type = "Cat";
+		std::string	type;
 
 };
 
