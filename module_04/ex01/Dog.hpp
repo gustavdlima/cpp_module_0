@@ -22,6 +22,9 @@ class Dog : public Animal
 		void	setBrain(Brain *newBrain);
 		void	makeSound() const;
 
+		// Operator
+    	Dog& operator=(Dog const& obj);;
+
 	private:
 		std::string	type;
 		Brain*	brain;

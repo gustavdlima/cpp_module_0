@@ -4,9 +4,7 @@
 Brain::Brain()
 {
 	std::cout << "\e[0;33mDefault Constructor called of Brain\e[0m" << std::endl;
-	this->setIdeias("Fly with Mosby");
-	this->setIdeias("Try catch all Pokemons");
-	this->index = 2;
+	this->index = 0;
 }
 
 Brain::Brain(const Brain &copy)

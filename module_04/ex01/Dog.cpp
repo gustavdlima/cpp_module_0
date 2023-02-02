@@ -16,6 +16,16 @@ Dog::~Dog()
 	delete this->brain;
 }
 
+// Operators
+Dog &Dog::operator=(Dog const& obj)
+{
+	std::cout << "\e[0;31mDog Copy assignment operator called \e[0m" << std::endl;
+	if (this != &obj) {
+		this->type = obj.getType();
+	}
+	return *this;
+}
+
 void	Dog::makeSound() const
 {
 	std::cout << "au au" << std::endl;
