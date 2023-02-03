@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 23:18:43 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/02 23:42:56 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/03 01:06:38 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main()
 {
-	Bureaucrat	norm("norm");
+	Bureaucrat	norm("norm", 0);
 
 	std::cout << norm.getName() << std::endl;
 }

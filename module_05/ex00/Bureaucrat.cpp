@@ -1,14 +1,14 @@
 #include "Bureaucrat.hpp"
 
 // Constructors
-Bureaucrat::Bureaucrat()
-{
-	std::cout << "\e[0;33mDefault Constructor called of Bureaucrat\e[0m" << std::endl;
-}
 
-Bureaucrat::Bureaucrat(std::string newName) : name(newName)
+Bureaucrat::Bureaucrat(std::string newName, int gradeValue) : name(newName), grade(gradeValue)
 {
 	std::cout << "\e[0;33mConstructor called of Bureaucrat\e[0m" << std::endl;
+	if (gradeValue < 1)
+		this->gradeTooHighException();
+	else if (gradeValue > 150)
+		this->gradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)
@@ -45,13 +45,10 @@ int	Bureaucrat::getGrade()
 }
 
 // Setters
-
-
 void Bureaucrat::setGrade(int value)
 {
 	this->grade = value;
 }
-
 
 // Member Functions
 void	Bureaucrat::gradeTooHighException(void)
@@ -62,4 +59,13 @@ void	Bureaucrat::gradeTooHighException(void)
 void	Bureaucrat::gradeTooLowException(void)
 {
 	std::cout << "grade too low, try 1-150." << std::endl;
+}
+
+void	Bureaucrat::incrementGrade(int value)
+{
+	this->grade--;
+}
+void	Bureaucrat::decrementGrade(int value)
+{
+	this->grade++;
 }
