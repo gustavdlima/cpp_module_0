@@ -9,6 +9,7 @@ class Bureaucrat
 	public:
 		// Constructors
 		Bureaucrat();
+		Bureaucrat(std::string newName);
 		Bureaucrat(const Bureaucrat &copy);
 
 		// Destructor
@@ -17,7 +18,19 @@ class Bureaucrat
 		// Operators
 		Bureaucrat & operator=(const Bureaucrat &assign);
 
+		// Getters
+		std::string getName();
+		int			getGrade();
+
+		// Setters
+		void setGrade(int value);
+
+		void	gradeTooHighException(void);
+		void	gradeTooLowException(void);
+
 	private:
+		const std::string name;
+		int grade;
 
 };
 
