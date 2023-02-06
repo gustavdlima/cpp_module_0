@@ -6,6 +6,18 @@
 
 class Bureaucrat
 {
+	class GradeTooHighException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+
+	class GradeTooLowException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw();
+	};
+
 	public:
 		// Constructors
 			Bureaucrat(std::string newName, int gradeValue);
@@ -25,15 +37,17 @@ class Bureaucrat
 		void		setGrade(int value);
 
 		// Member functions
-		void		gradeTooHighException(void);
-		void		gradeTooLowException(void);
-		void		incrementGrade(int value);
-		void		decrementGrade(int value);
+		// int			gradeTooHighException(void);
+		// int			gradeTooLowException(void);
+		void		incrementGrade();
+		void		decrementGrade();
 
 	private:
 		const std::string name;
 		int grade;
 
 };
+
+std::ostream &operator<<(std::ostream& out,Bureaucrat& object);
 
 #endif
