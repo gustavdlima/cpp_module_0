@@ -6,22 +6,25 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:51:59 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 23:38:15 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/07 00:05:28 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
+// Constructors
 Harl::Harl()
 {
 
 }
 
+// Destructors
 Harl::~Harl()
 {
 
 }
 
+// Member Functions
 void Harl::debug(void)
 {
 	std::cout << "[debug message]" << std::endl;
@@ -68,8 +71,12 @@ void Harl::complain(std::string level)
 
 	for (int i = 0; i < 4; i++) {
 		if (level == levels[i])
+		{
 			(this->*complainPtr[i]) ();
-		else {
+			break ;
+		}
+		if (i == 3)
+		{
 			std::cout << "[error message]" << std::endl;
 			std::cout << "wrong level!" << std::endl;
 			break ;

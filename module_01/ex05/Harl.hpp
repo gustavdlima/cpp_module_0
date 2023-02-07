@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:49:54 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/17 22:24:48 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:58:03 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ class Harl {
 		void error(void);
 
 	public:
-		Harl();
-		~Harl();
-		void complain(std::string level);
+		// Constructors
+			Harl();
+
+		// Destructors
+			~Harl();
+
+		// Member Functions
+			void complain(std::string level);
 
 };
 #endif //__HARL_HPP
