@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 23:18:43 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 21:22:48 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/07 15:18:43 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,38 @@ int	main()
 		std::cout << e.what() << std::endl;
 	}
 
-		try {
-		Form	science("science", 1, 130);
-		Bureaucrat	norm("norm", 155);
-		science.beSigned(norm);
+	try {
+		Form	history("history", 1, 130);
+		Bureaucrat	bryan("bryan", 120);
+		history.beSigned(bryan);
+		bryan.signForm(history);
+	} catch(std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		Form		geology("geology", 1, 130);
+		Bureaucrat	hermes("hermes", 155);
+		geology.beSigned(hermes);
+		hermes.signForm(geology);
+	} catch(std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		Form	financial("financial", 1, 130);
+		Bureaucrat	luna("luna", 0);
+		financial.beSigned(luna);
+		luna.signForm(financial);
+	} catch(std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		Form	legislative("legislative", 1, 130);
+		Bureaucrat	amyLee("amyLee", 0);
+		legislative.beSigned(amyLee);
+		amyLee.signForm(legislative);
 	} catch(std::exception& e){
 		std::cout << e.what() << std::endl;
 	}

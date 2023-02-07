@@ -5,6 +5,7 @@
 # include <string>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form
 {
 	class GradeTooHighException : public std::exception

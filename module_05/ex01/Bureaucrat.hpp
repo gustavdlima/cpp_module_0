@@ -3,10 +3,12 @@
 
 # include <iostream>
 # include <string>
-# include <Form.hpp>
+# include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
+	// Custom Exceptions
 	class GradeTooHighException : public std::exception
 	{
 		public:
@@ -40,7 +42,7 @@ class Bureaucrat
 		// Member functions
 		void		incrementGrade();
 		void		decrementGrade();
-		void		signForm(void);
+		void		signForm(Form &form);
 
 	private:
 		const std::string name;

@@ -90,7 +90,7 @@ const char* Form::GradeTooLowException::what() const throw()
 // Member Functions
 void	Form::beSigned(Bureaucrat& norm)
 {
-	if (norm.getGrade() <= 150)
+	if (norm.getGrade() <= this->getGradeSign())
 		this->isSigned = 1;
 	else
 		Form::GradeTooLowException();
