@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:14:28 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/17 22:38:03 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:34:52 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 
 int main() {
 	Harl		harl;
-	std::string	buffer;
+	// std::string	buffer;
 
-	std::cout << "Choose a level: " << std::endl;
-	std::cout << "-debug" << std::endl;
-	std::cout << "-info" << std::endl;
-	std::cout << "-warning" << std::endl;
-	std::cout << "-error" << std::endl;
-	std::cin >> buffer;
-	harl.complain(buffer);
+	// std::cout << "Choose a level: " << std::endl;
+	// std::cout << "-debug" << std::endl;
+	// std::cout << "-info" << std::endl;
+	// std::cout << "-warning" << std::endl;
+	// std::cout << "-error" << std::endl;
+	// std::cin >> buffer;
+	// harl.complain(buffer);
 
 	/*
 		- before uncomment the tests, comment from line 19 to 27!
@@ -37,8 +37,8 @@ int main() {
 	// harl.complain("error");
 
 	// tests with wrong inputs
-	// harl.complain("debuguer");
-	// harl.complain("information");
-	// harl.complain("warnings");
-	// harl.complain("errors");
+	harl.complain("debuguer");
+	harl.complain("information");
+	harl.complain("warnings");
+	harl.complain("errors");
 }
