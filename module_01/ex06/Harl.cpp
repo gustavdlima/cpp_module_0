@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:51:59 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/18 10:37:15 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:52:31 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ void Harl::complain(std::string level) {
 	void		(Harl::*complainPtr[4]) (void) = { debugPtr, infoPtr, warningPtr, errorPtr};
 
 	for (int i = 0; i < 4; i++) {
-			// std::cout << level << std::endl;
-		if (level == levels[i]) {
+		// std::cout << level << std::endl;
+		// std::cout << levels[i] << std::endl;
+		if (level == levels[i])
+		{
 			switch(i) {
 				case 0:
 					for (int j = 0; j < 4;j++) {
@@ -80,6 +82,12 @@ void Harl::complain(std::string level) {
 					}
 					break ;
 			}
+			return ;
+		}
+		if (i == 3)
+		{
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		}
 	}
 }
+
