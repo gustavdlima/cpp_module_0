@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:08:21 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/26 22:12:40 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:23:06 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ int	main() {
 		<< *brainMessagePtr << std::endl;
 	std::cout << "Value pointed to by stringREF: "
 		<< brainMessageReference << std::endl;
+
+	return 0;
 }

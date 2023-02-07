@@ -3,7 +3,7 @@ NAME		= sedIsForLosers
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC			= Application.cpp main.cpp
+SRC			= notSed.cpp main.cpp
 
 FILE		= file.replace
 

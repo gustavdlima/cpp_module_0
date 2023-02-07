@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <Form.hpp>
 
 class Bureaucrat
 {
@@ -37,10 +38,9 @@ class Bureaucrat
 		void		setGrade(int value);
 
 		// Member functions
-		// int			gradeTooHighException(void);
-		// int			gradeTooLowException(void);
 		void		incrementGrade();
 		void		decrementGrade();
+		void		signForm(void);
 
 	private:
 		const std::string name;

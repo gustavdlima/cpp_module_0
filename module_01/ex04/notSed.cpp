@@ -1,82 +1,100 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Application.cpp                                    :+:      :+:    :+:   */
+/*   notSed.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:42:58 by gusalves          #+#    #+#             */
-/*   Updated: 2023/01/05 06:59:46 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:17:42 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Application.hpp"
+#include "notSed.hpp"
 #include <fstream>
 
-Application::Application(std::string file) : filename(file) {
+// Constructors
+notSed::notSed(std::string file) : filename(file)
+{
 
 }
 
-Application::~Application() {
+// Destructors
+notSed::~notSed()
+{
 
 }
 
-std::string Application::getFilename(void) {
+// Getters
+std::string notSed::getFilename(void)
+{
 	return (this->filename);
 }
 
-std::string Application::getS1(void) {
+std::string notSed::getS1(void)
+{
 	return (this->s1);
 }
 
-std::string Application::getS2(void) {
+std::string notSed::getS2(void) {
 	return (this->s2);
 }
 
-void Application::setFilename(std::string newName) {
+// Setters
+void notSed::setFilename(std::string newName)
+{
 	this->filename = newName;
 }
 
-void Application::setS1(std::string string) {
+void notSed::setS1(std::string string) {
 	this->s1 = string;
 }
 
-void Application::setS2(std::string string) {
+void notSed::setS2(std::string string)
+{
 	this->s2 = string;
 }
 
-bool Application::checkIfFileExist(void) {
+// Member Functions
+bool notSed::checkIfFileExist(void)
+{
 	std::ifstream file(this->filename.c_str());
 
 	return file.good();
 }
 
-void Application::openInFile(std::ifstream &inFile) {
+void notSed::openInFile(std::ifstream &inFile)
+{
 	inFile.open(this->filename.data());
 }
 
-void Application::closeInFile(std::ifstream &inFile) {
+void notSed::closeInFile(std::ifstream &inFile)
+{
 	inFile.close();
 }
 
-void Application::createAndOpenOutfile(std::ofstream &outFile) {
+void notSed::createAndOpenOutfile(std::ofstream &outFile)
+{
 	std::string		newFileName = ".replace";
 
 	newFileName = this->filename + newFileName;
 	outFile.open(newFileName.data());
 }
 
-void Application::closeOutFile(std::ofstream &outFile) {
+void notSed::closeOutFile(std::ofstream &outFile)
+{
 	outFile.close();
 }
 
-void Application::readInputFileAndReplaceS1WithS2(std::ifstream &inFile, std::ofstream &outFile) {
+void notSed::readInputFileAndReplaceS1WithS2(std::ifstream &inFile, std::ofstream &outFile)
+ {
 	std::string	buffer;
 
-	while (std::getline(inFile, buffer)) {
-			if (buffer == this->s1)
-				outFile << this->s2 << std::endl;
-			else
-				outFile << buffer << std::endl;
+	while (std::getline(inFile, buffer))
+	{
+		if (buffer == this->s1)
+			outFile << this->s2 << std::endl;
+		else
+			outFile << buffer << std::endl;
 	}
 }

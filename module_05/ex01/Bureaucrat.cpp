@@ -86,3 +86,8 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "grade too low, try 1-150.";
 }
+
+void Bureaucrat::signForm(void)
+{
+	if (Form::isSigned == 1)
+}

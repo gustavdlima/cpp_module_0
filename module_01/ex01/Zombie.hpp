@@ -9,15 +9,24 @@ class Zombie {
 		std::string	name;
 
 	public:
+		// Constructors
 					Zombie();
 					Zombie(std::string name);
+
+		// Destructors
 					~Zombie();
+
+		// Getters
+		std::string getName(void);
+
+		// Setters
+		void		setName(std::string name);
+
+		// Member Functions
 		void		announce(void);
 		void		deleteZombie(Zombie *zombie);
 		void		randomChump(std::string name);
 		Zombie*		newZombie(std::string name);
-		void		setName(std::string name);
-		std::string getName(void);
 
 };
 

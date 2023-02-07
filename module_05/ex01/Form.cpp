@@ -6,10 +6,13 @@
 		// const std::string	name;
 
 // Constructors
-Form::Form(std::string name, int gradeSignValue, int gradeExecuteValue) : name(name), gradeExecute(gradeExecuteValue), gradeSign(gradeSignValue)
+Form::Form(std::string name, int gradeSignValue, int gradeExecuteValue) : name(name), gradeExecute(gradeExecuteValue), gradeSign(gradeSignValue), isSigned(false)
 {
 	std::cout << "\e[0;33mDefault Constructor called of Form\e[0m" << std::endl;
-	this->isSigned = 0;
+	if (gradeExecuteValue < 1)
+		throw Form::GradeTooHighException();
+	if (gradeSignValue > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form &copy) : name(copy.name), gradeExecute(copy.gradeExecute), gradeSign(copy.gradeSign)
@@ -40,7 +43,6 @@ std::ostream &operator<<(std::ostream& out, Form& object)
 	std::cout << "Signed: "<< object.getisSigned() << std::endl;
 	return out;
 }
-
 
 // Getters
 std::string	Form::getName(void)
@@ -74,7 +76,6 @@ void	Form::setIsSigned(bool newValue)
 }
 
 // Custom Exceptions
-
 const char* Form::GradeTooHighException::what() const throw()
 {
 	return "grade too High, try 1-150.";
@@ -85,3 +86,12 @@ const char* Form::GradeTooLowException::what() const throw()
 	return "grade too low, try 1-150.";
 }
 
+
+// Member Functions
+void	Form::beSigned(Bureaucrat& norm)
+{
+	if (norm.getGrade() <= 150)
+		this->isSigned = 1;
+	else
+		Form::GradeTooLowException();
+}

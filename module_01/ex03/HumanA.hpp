@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:44:02 by gusalves          #+#    #+#             */
-/*   Updated: 2022/12/27 20:27:31 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 22:36:07 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 class HumanA {
 
 	public:
+		// Constructors
 					HumanA(std::string newName, Weapon &newWeapon);
+
+		// Destructors
 					~HumanA(void);
 
+		// Member Functions
 		Weapon		&getWeapon(void);
-		void		setWeapon(Weapon &newWeapon);
-
 		void		attack(void);
+
+		// Setters
+		void		setWeapon(Weapon &newWeapon);
 
 	private:
 		std::string	name;

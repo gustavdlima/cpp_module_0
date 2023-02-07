@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include "Bureaucrat.hpp"
 
 class Form
 {
@@ -36,12 +37,15 @@ class Form
 		// Setters
 		void		setIsSigned(bool newValue);
 
+		// Member Functions
+		void		beSigned(Bureaucrat& norm);
+
 
 	private:
 		const std::string	name;
-		bool				isSigned;
 		const int			gradeExecute;
 		const int			gradeSign;
+		bool				isSigned;
 };
 
 std::ostream &operator<<(std::ostream& out, Form& object);

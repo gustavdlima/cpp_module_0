@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 23:18:43 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 20:14:25 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/06 21:22:48 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ int	main()
 		std::cout << e.what() << std::endl;
 	}
 
+		try {
+		Form	science("science", 1, 130);
+		Bureaucrat	norm("norm", 155);
+		science.beSigned(norm);
+	} catch(std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }
