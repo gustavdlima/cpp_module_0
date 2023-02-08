@@ -1,10 +1,5 @@
 #include "AForm.hpp"
 
-		// bool				isSigned;
-		// const int			gradeSign;
-		// const int			gradeExecute;
-		// const std::string	name;
-
 // Constructors
 AForm::AForm(std::string name, int gradeSignValue, int gradeExecuteValue) : name(name), gradeExecute(gradeExecuteValue), gradeSign(gradeSignValue), isSigned(false)
 {
@@ -37,7 +32,7 @@ AForm & AForm::operator=(const AForm &assign)
 
 std::ostream &operator<<(std::ostream& out, AForm& object)
 {
-	std::cout << "Form name: " <<object.getName() << std::endl;
+	std::cout << "Form name: " << object.getName() << std::endl;
 	std::cout << "Grade to execute: " << object.getGradeExecute() << std::endl;
 	std::cout << "Grade to sign: " << object.getGradeSign() << std::endl;
 	std::cout << "Signed: "<< object.getisSigned() << std::endl;
@@ -45,12 +40,12 @@ std::ostream &operator<<(std::ostream& out, AForm& object)
 }
 
 // Getters
-std::string	AForm::getName(void)
+const std::string&	AForm::getName(void) const
 {
 	return this->name;
 }
 
-bool	AForm::getisSigned(void)
+bool	AForm::getisSigned(void) const
 {
 	return this->isSigned;
 }
@@ -95,4 +90,13 @@ void	AForm::beSigned(Bureaucrat& norm)
 	if (norm.getGrade() > this->getGradeSign())
 		AForm::GradeTooLowException();
 	this->isSigned = true;
+}
+
+bool	AForm::execute(const Bureaucrat &executor) const
+{
+	if (!this->isSigned)
+		throw AForm::FormNotSigned();
+	if (executor.getGrade() > this->gradeExecute)
+		throw AForm::GradeTooLowException();
+	return true;
 }

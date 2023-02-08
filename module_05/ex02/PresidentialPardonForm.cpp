@@ -1,12 +1,19 @@
 #include "PresidentialPardonForm.hpp"
 
 // Constructors
-PresidentialPardonForm::PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5)
 {
 	std::cout << "\e[0;33mDefault Constructor called of PresidentialPardonForm\e[0m" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5)
+{
+	std::cout << "\e[0;33mDefault Constructor called of PresidentialPardonForm\e[0m" << std::endl;
+	this->target = target;
+}
+
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &copy) : AForm("PresidentialPardonForm", 25, 5)
 {
 	(void) copy;
 	std::cout << "\e[0;33mCopy Constructor called of PresidentialPardonForm\e[0m" << std::endl;
@@ -19,6 +26,12 @@ PresidentialPardonForm::~PresidentialPardonForm()
 	std::cout << "\e[0;31mDestructor called of PresidentialPardonForm\e[0m" << std::endl;
 }
 
+// Getters
+std::string PresidentialPardonForm::getTarget() const
+{
+	return (this->target);
+}
+
 
 // Operators
 PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPardonForm &assign)
@@ -27,12 +40,8 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 	return *this;
 }
 
-
-
-// Stream operators
-std::ostream & operator<<(std::ostream &stream, const PresidentialPardonForm &object)
+bool	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	(void) object;
-	stream << "${field}" << std::endl;
-	return stream;
+	std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	return true;
 }

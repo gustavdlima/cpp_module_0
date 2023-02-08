@@ -36,22 +36,15 @@ RobotomyRequestForm & RobotomyRequestForm::operator=(const RobotomyRequestForm &
 }
 
 // Getters
-std::string RobotomyRequestForm::getTarget()
+std::string RobotomyRequestForm::getTarget() const
 {
 	return (this->target);
 }
 
-// Stream operators
-std::ostream & operator<<(std::ostream &stream, const RobotomyRequestForm &object)
-{
-	(void) object;
-	return stream;
-}
-
 // Member Functions
-void RobotomyRequestForm::execute()
+bool	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	if (this->getisSigned() != false)
+	if (AForm::execute(executor))
 	{
 		if (std::rand() % 2)
 			std::cout << this->getTarget() << " has been robotomized successfully" << std::endl;
@@ -60,4 +53,5 @@ void RobotomyRequestForm::execute()
 	} else {
 		throw AForm::FormNotSigned();
 	}
+	return true;
 }

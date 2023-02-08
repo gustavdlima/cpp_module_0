@@ -37,12 +37,12 @@ std::ostream &operator<<(std::ostream& out, Bureaucrat& object)
 }
 
 // Getters
-std::string Bureaucrat::getName()
+const std::string& Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int	Bureaucrat::getGrade()
+int	Bureaucrat::getGrade() const
 {
 		return this->grade;
 }
@@ -91,4 +91,15 @@ void Bureaucrat::signForm(AForm& form)
   } catch (std::exception &e) {
     std::cout << name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
   }
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try {
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << std::endl;
+		std::cout << form.getName() << std::endl;
+	} catch (std::exception &e) {
+		e.what();
+	}
 }

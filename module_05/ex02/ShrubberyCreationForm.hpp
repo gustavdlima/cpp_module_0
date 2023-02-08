@@ -21,17 +21,14 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm & operator=(const ShrubberyCreationForm &assign);
 
 		// Getters
-		std::string getTarget();
+		std::string getTarget() const;
 
 		bool	checkIfFileExist(std::string filename);
-		void	execute(void);
+		virtual bool	execute(Bureaucrat const &executor) const;
 
 	private:
 		std::string	target;
 
 };
-
-// Stream operators
-std::ostream & operator<<(std::ostream &stream, const ShrubberyCreationForm &object);
 
 #endif

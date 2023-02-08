@@ -22,14 +22,11 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm & operator=(const RobotomyRequestForm &assign);
 
 		// Getters
-		std::string getTarget();
-		void execute();
+		std::string getTarget() const;
+		virtual bool	execute(Bureaucrat const &executor) const;
 
 	private:
 		std::string	target;
 };
-
-// Stream operators
-std::ostream & operator<<(std::ostream &stream, const RobotomyRequestForm &object);
 
 #endif

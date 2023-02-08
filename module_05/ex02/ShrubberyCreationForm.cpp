@@ -33,16 +33,8 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreation
 	return *this;
 }
 
-
-// Stream operators
-std::ostream & operator<<(std::ostream &stream, const ShrubberyCreationForm &object)
-{
-	(void)object;
-	return stream;
-}
-
 // Getters
-std::string ShrubberyCreationForm::getTarget()
+std::string ShrubberyCreationForm::getTarget() const
 {
 	return (this->target);
 }
@@ -59,15 +51,14 @@ bool ShrubberyCreationForm::checkIfFileExist(std::string filename)
 }
 
 
-void ShrubberyCreationForm::execute(void)
+bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	if (this->getisSigned() == false)
-		throw AForm::FormNotSigned();
-	std::string temp = "_shrubbery";
-	this->target = this->getTarget() + temp;
-	if (!checkIfFileExist(this->target))
+	AForm::execute(executor);
+
+	if (AForm::execute(executor))
 	{
-		std::ofstream outfile((this->getTarget().data()));
+		std::string filename = this->getTarget() + "_shrubbery";
+		std::ofstream outfile(filename.data());
 		outfile << "                     ; ; ;" << std::endl;
 		outfile << "                   ;        ;  ;     ;;    ;" << std::endl;
 		outfile << "                ;                 ;         ;  ;" << std::endl;
@@ -89,8 +80,10 @@ void ShrubberyCreationForm::execute(void)
 		outfile << "                              :@):." << std::endl;
 		outfile << "                             .:@:'." << std::endl;
 		outfile << "                           .::(@:." << std::endl;
-
 		outfile.close();
 		std::cout << "File " << this->getTarget() << " created." << std::endl;
+	} else {
+		throw AForm::FormNotSigned();
 	}
+	return true;
   }

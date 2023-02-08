@@ -37,8 +37,8 @@ class AForm
 		virtual AForm & operator=(const AForm &assign);
 
 		// Getters
-		virtual std::string	getName(void);
-		virtual bool		getisSigned(void);
+		const std::string&	getName(void) const;
+		virtual bool		getisSigned(void) const;
 		virtual int			getGradeExecute(void);
 		virtual int			getGradeSign(void);
 
@@ -47,6 +47,7 @@ class AForm
 
 		// Member Functions
 		virtual void		beSigned(Bureaucrat& norm);
+		virtual bool		execute(const Bureaucrat & executor) const = 0;
 
 
 	private:

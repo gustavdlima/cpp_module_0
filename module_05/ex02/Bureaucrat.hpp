@@ -8,20 +8,21 @@
 class AForm;
 class Bureaucrat
 {
-	// Custom Exceptions
-	class GradeTooHighException : public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
-
-	class GradeTooLowException : public std::exception
-	{
-		public:
-			virtual const char* what() const throw();
-	};
 
 	public:
+		// Custom Exceptions
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
 		// Constructors
 			Bureaucrat(std::string newName, int gradeValue);
 			Bureaucrat(const Bureaucrat &copy);
@@ -33,8 +34,8 @@ class Bureaucrat
 		Bureaucrat & operator=(const Bureaucrat &assign);
 
 		// Getters
-		std::string getName();
-		int			getGrade();
+		const std::string& getName() const;
+		int			getGrade() const;
 
 		// Setters
 		void		setGrade(int value);
@@ -43,6 +44,7 @@ class Bureaucrat
 		void		incrementGrade();
 		void		decrementGrade();
 		void		signForm(AForm &form);
+		void		executeForm(AForm const &form);
 
 	private:
 		const std::string name;
