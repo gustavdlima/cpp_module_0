@@ -1,10 +1,5 @@
 #include "Form.hpp"
 
-		// bool				isSigned;
-		// const int			gradeSign;
-		// const int			gradeExecute;
-		// const std::string	name;
-
 // Constructors
 Form::Form(std::string name, int gradeSignValue, int gradeExecuteValue) : name(name), gradeExecute(gradeExecuteValue), gradeSign(gradeSignValue), isSigned(false)
 {
@@ -38,8 +33,8 @@ Form & Form::operator=(const Form &assign)
 std::ostream &operator<<(std::ostream& out, Form& object)
 {
 	std::cout << "Form name: " <<object.getName() << std::endl;
-	std::cout << "Execute it: " << object.getGradeExecute() << std::endl;
-	std::cout << "Sign it: " << object.getGradeSign() << std::endl;
+	std::cout << "Grade to execute: " << object.getGradeExecute() << std::endl;
+	std::cout << "Grade to sign: " << object.getGradeSign() << std::endl;
 	std::cout << "Signed: "<< object.getisSigned() << std::endl;
 	return out;
 }
@@ -86,12 +81,16 @@ const char* Form::GradeTooLowException::what() const throw()
 	return "grade too low, try 1-150.";
 }
 
+const char* Form::FormNotSigned::what() const throw()
+{
+	return "[Form not Signed]";
+}
 
 // Member Functions
 void	Form::beSigned(Bureaucrat& norm)
 {
 	if (norm.getGrade() <= this->getGradeSign())
-		this->isSigned = 1;
+		this->isSigned = true;
 	else
 		Form::GradeTooLowException();
 }

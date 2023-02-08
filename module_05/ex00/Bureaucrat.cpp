@@ -72,11 +72,6 @@ void	Bureaucrat::decrementGrade()
 }
 
 // Exceptions
-// Bureaucrat::GradeTooHighException::GradeTooHighException()
-// {
-// 	this->what();
-// }
-
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "grade too High, try 1-150.";

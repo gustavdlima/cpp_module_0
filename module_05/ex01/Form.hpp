@@ -8,17 +8,23 @@
 class Bureaucrat;
 class Form
 {
-	class GradeTooHighException : public std::exception
-	{
-		virtual const char* what() const throw();
-	};
-
-	class GradeTooLowException : public std::exception
-	{
-		virtual const char* what() const throw();
-	};
-
 	public:
+		// Custom Exceptions
+		class GradeTooHighException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+
+		class FormNotSigned : public std::exception
+		{
+			virtual const char* what() const throw();
+		};
+
 		// Constructors
 		Form(const std::string name, const int gradeSignValue, int gradeExecuteValue);
 		Form(const Form &copy);
