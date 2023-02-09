@@ -53,8 +53,6 @@ bool ShrubberyCreationForm::checkIfFileExist(std::string filename)
 
 bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	AForm::execute(executor);
-
 	if (AForm::execute(executor))
 	{
 		std::string filename = this->getTarget() + "_shrubbery";
