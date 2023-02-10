@@ -15,11 +15,13 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 
 class notSed
 {
 	private:
+		std::string	fileContent;
 		std::string	filename;
 		std::string	s1;
 		std::string	s2;
@@ -47,6 +49,8 @@ class notSed
 		void		closeInFile(std::ifstream &inFile);
 		void		createAndOpenOutfile(std::ofstream &outFile);
 		void		closeOutFile(std::ofstream &outFile);
+		void		replaceStrings(std::ofstream &outFile);
+		void		takeFileContent(std::ifstream &inFile);
 		void		readInputFileAndReplaceS1WithS2(std::ifstream &inFile, std::ofstream &outFile);
 };
 

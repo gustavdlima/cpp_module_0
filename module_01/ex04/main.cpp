@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 21:00:12 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 23:57:04 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:30:00 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int main(int argc, char **argv) {
 	app.setFilename(std::string(argv[1]).append(""));
 	app.setS1(std::string(argv[2]).append(""));
 	app.setS2(std::string(argv[3]).append(""));
-	if (app.checkIfFileExist()) {
+	if (app.checkIfFileExist())
+	{
 		app.openInFile(inFile);
 		app.createAndOpenOutfile(outFile);
 		app.readInputFileAndReplaceS1WithS2(inFile, outFile);

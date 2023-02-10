@@ -86,15 +86,37 @@ void notSed::closeOutFile(std::ofstream &outFile)
 	outFile.close();
 }
 
-void notSed::readInputFileAndReplaceS1WithS2(std::ifstream &inFile, std::ofstream &outFile)
- {
-	std::string	buffer;
-
-	while (std::getline(inFile, buffer))
-	{
-		if (buffer == this->s1)
-			outFile << this->s2 << std::endl;
-		else
-			outFile << buffer << std::endl;
-	}
+void notSed::takeFileContent(std::ifstream &inFile)
+{
+	std::stringstream	buffer;
+	buffer << inFile.rdbuf();
+	this->fileContent = buffer.str();
 }
+
+void	notSed::replaceStrings(std::ofstream &outFile)
+{
+	std::string newContent;
+	int	i = 0;
+	while (this->fileContent[i])
+	{
+		if (this->fileContent.substr(i, getS1().length()) == getS1())
+		{
+			newContent += s2;
+			std::cout << newContent << std::endl;
+			i += s1.length();
+		}
+		else
+		{
+			newContent += this->fileContent[i];
+			i++;
+		}
+	}
+	outFile << newContent;
+}
+
+void notSed::readInputFileAndReplaceS1WithS2(std::ifstream &inFile, std::ofstream &outFile)
+{
+	takeFileContent(inFile);
+	replaceStrings(outFile);
+}
+
