@@ -17,7 +17,6 @@ class Zombie {
 
 		// Member Functions
 		void		announce(void);
-		void		deleteZombie(Zombie *zombie);
 		void		randomChump(std::string name);
 		Zombie*		newZombie(std::string name);
 

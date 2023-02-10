@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:37:30 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 22:39:52 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:30:17 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Weapon::~Weapon() {
 }
 
 // Getter
-std::string	&Weapon::getType(void) {
+const std::string	&Weapon::getType(void) {
 	return(this->type);
 }
 

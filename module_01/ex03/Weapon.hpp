@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:40:11 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/06 22:38:59 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:31:17 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Weapon {
 		// Destructors
 					~Weapon(void);
 		// Getters
-		std::string	&getType(void);
+		const std::string	&getType(void);
 
 		// Setters
 		void		setType(std::string type);
