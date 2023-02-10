@@ -1,8 +1,9 @@
-NAME		= fixed
+NAME		= scalar
+
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC			= Fixed.cpp main.cpp
+SRC			= main.cpp
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $(<:%.cpp=%.o)
