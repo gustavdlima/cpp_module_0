@@ -11,7 +11,6 @@ Animal::Animal(const Animal &obj) {
 	*this = obj;
 }
 
-
 // Destructor
 Animal::~Animal()
 {

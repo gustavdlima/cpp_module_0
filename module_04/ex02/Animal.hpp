@@ -16,10 +16,10 @@ class Animal
 		Animal(const Animal &obj);
 
 		// Destructor
-		virtual ~Animal();
+		virtual ~Animal() = 0;
 
-		std::string	getType() const;
-		void	makeSound() const;
+		std::string		getType() const;
+		virtual void	makeSound() const = 0;
 
 	protected:
 		std::string	type;

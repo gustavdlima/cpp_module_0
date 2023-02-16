@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:45:01 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/02 02:24:59 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:11:58 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,8 @@
 
 
 
-int	main() {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const WrongAnimal* i = new WrongCat();
-
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-
-	Cat	testCat;
-	std::cout << testCat.getType() << std::endl;
-	testCat.makeSound();
-
-	Dog testDog;
-	std::cout << testDog.getType() << std::endl;
-	testDog.makeSound();
-
-	const Animal* tempAnimal = j;
-	j = meta;
-	std::cout << j->getType() << std::endl;
-
-	delete tempAnimal;
-	delete j;
-	delete i;
-
+int	main()
+{
 	Animal**	arrayOfAnimals = new Animal*[6];
 
 	for(int	i = 0; i < 6; i++)
