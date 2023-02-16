@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:45:01 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/02 01:51:51 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/15 22:12:27 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 
 
 
-int	main() {
+int	main()
+{
 	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const WrongAnimal* i = new WrongCat();
+	const Animal* caramel = new Dog();
+	const WrongAnimal* wrongCat = new WrongCat();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
+	std::cout << caramel->getType() << " " << std::endl;
+	std::cout << wrongCat->getType() << " " << std::endl;
+	wrongCat->makeSound();
+	caramel->makeSound();
 	meta->makeSound();
 
 	Cat	testCat;
@@ -37,12 +38,25 @@ int	main() {
 	std::cout << testDog.getType() << std::endl;
 	testDog.makeSound();
 
-	const Animal* tempAnimal = j;
-	j = meta;
-	std::cout << j->getType() << std::endl;
+	const WrongAnimal* test = new WrongAnimal();
+	test = wrongCat;
+	std::cout << test->getType() << std::endl;
 
-	delete tempAnimal;
-	delete j;
-	delete i;
+	delete meta;
+	delete wrongCat;
+	delete caramel;
+	delete test;
 	return 0;
+
+	// // PDF TEST
+	// const Animal* meta = new Animal();
+	// const Animal* j = new Dog();
+	// const Animal* i = new Cat();
+	// std::cout << j->getType() << " " << std::endl;
+	// std::cout << i->getType() << " " << std::endl;
+	// i->makeSound(); //will output the cat sound!
+	// j->makeSound();
+	// meta->makeSound();
+	// return 0;
+
 }
