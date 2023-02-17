@@ -4,9 +4,9 @@
 Form::Form(std::string name, int gradeSignValue, int gradeExecuteValue) : name(name), gradeExecute(gradeExecuteValue), gradeSign(gradeSignValue), isSigned(false)
 {
 	std::cout << "\e[0;33mDefault Constructor called of Form\e[0m" << std::endl;
-	if (gradeExecuteValue < 1)
+	if (gradeSignValue < 1 || gradeExecuteValue < 1)
 		throw Form::GradeTooHighException();
-	if (gradeSignValue > 150)
+	if (gradeSignValue > 150 || gradeExecuteValue > 150)
 		throw Form::GradeTooLowException();
 }
 
@@ -27,6 +27,9 @@ Form::~Form()
 Form & Form::operator=(const Form &assign)
 {
 	(void) assign;
+	if (this != &assign) {
+		this->isSigned = assign.isSigned;
+	}
 	return *this;
 }
 

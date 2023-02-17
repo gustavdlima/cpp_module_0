@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 17:45:01 by gusalves          #+#    #+#             */
-/*   Updated: 2023/02/15 23:00:35 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/02/15 23:06:05 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include "Brain.hpp"
-
-
 
 int	main()
 {

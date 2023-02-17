@@ -19,13 +19,12 @@ ScavTrap::~ScavTrap()
 	std::cout << "Destructor called of ScavTrap" << std::endl;
 }
 
-
 // Operators
-// ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
-// {
-// 	(void) assign;
-// 	return *this;
-// }
+ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
+{
+	(void) assign;
+	return *this;
+}
 
 void ScavTrap::attack(const std::string& target)
 {

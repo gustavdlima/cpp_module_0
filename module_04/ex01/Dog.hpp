@@ -27,7 +27,7 @@ class Dog : public Animal
 
 	private:
 		std::string	type;
-		Brain*	brain;
+		Brain*		brain;
 
 };
 

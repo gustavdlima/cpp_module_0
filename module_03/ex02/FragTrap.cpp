@@ -13,7 +13,6 @@ FragTrap::FragTrap(std::string newName) : ClapTrap(newName)
 	this->setAttackDamage(30);
 }
 
-
 // Destructor
 FragTrap::~FragTrap()
 {

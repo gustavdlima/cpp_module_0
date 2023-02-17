@@ -42,6 +42,11 @@ PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPar
 
 bool	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	if (AForm::execute(executor))
+	{
+		std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	} else {
+		throw AForm::FormNotSigned();
+	}
 	return true;
 }

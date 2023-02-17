@@ -12,9 +12,11 @@ class ScavTrap : public ClapTrap
 		// Constructors
 		ScavTrap(std::string newName);
 
-
 		// Destructor
 		~ScavTrap();
+
+		// Operators
+		ScavTrap & operator=(const ScavTrap &assign);
 
 		void attack(const std::string& target);
 		void guardGate();

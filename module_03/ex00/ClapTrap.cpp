@@ -11,7 +11,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string newName) : name(newName)
 {
-	std::cout << FBLU("Default Constructor called of ClapTrap ") << this->name << std::endl;
+	std::cout << FBLU("Constructor called of ClapTrap ") << this->name << std::endl;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
@@ -84,12 +84,12 @@ void ClapTrap::setAttackDamage(int  number)
 // Others
 void ClapTrap::attack(const std::string& target)
 {
-	if (this->hitPoints <= 0)
+	if (this->hitPoints == 0)
 	{
 		std::cout << FRED("you're dead") << std::endl;
 		return ;
 	}
-	if (this->energyPoints <= 0)
+	if (this->energyPoints == 0)
 	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
 		return ;
@@ -107,12 +107,12 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->hitPoints <= 0)
+	if (this->hitPoints == 0)
 	{
 		std::cout << FRED("you're dead") << std::endl;
 		return ;
 	}
-	if (this->energyPoints <= 0)
+	if (this->energyPoints == 0)
 	{
 		std::cout << FBLU("you don't have enough energy") << std::endl;
 		return ;

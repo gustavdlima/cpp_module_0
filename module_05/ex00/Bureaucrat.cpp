@@ -44,7 +44,7 @@ std::string Bureaucrat::getName()
 
 int	Bureaucrat::getGrade()
 {
-		return this->grade;
+	return this->grade;
 }
 
 // Setters
