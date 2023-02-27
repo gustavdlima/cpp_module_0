@@ -1,9 +1,9 @@
-NAME		= scalar
+NAME		= convert
 
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC			= main.cpp
+SRC			= Converter.cpp main.cpp
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $(<:%.cpp=%.o)
