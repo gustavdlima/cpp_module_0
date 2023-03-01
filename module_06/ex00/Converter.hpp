@@ -19,7 +19,13 @@ class Converter
 		Converter & operator=(const Converter &assign);
 
 		// Getters
-		std::string getValue() const;
+		std::string	getValue() const;
+
+		// Methods
+		bool	isLiteral();
+		void	convertAndPrint();
+		bool	isPrintable(char c);
+
 
 	private:
 		std::string value;

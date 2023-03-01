@@ -43,3 +43,35 @@ std::string Converter::getValue() const
 {
 	return this->value;
 }
+
+bool	Converter::isPrintable(char c)
+{
+    return (c >= 32 && c <= 126); // printable characters have ASCII codes between 32 and 126
+}
+
+bool	Converter::isLiteral()
+{
+	if ((this->value.size() == 3) && (this->value[0] == '\'')
+		&& (this->value[2] == '\''))
+		return true;
+	return false;
+}
+
+void	Converter::convertAndPrint()
+{
+	if (this->isLiteral())
+	{
+
+		const	char	*str = this->getValue().c_str();
+		const char	literal = static_cast<char>(str[0]);
+
+		if (this->isPrintable(literal))
+			std::cout << "char: " << literal << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+	} else {
+		std::cout << "int: " << static_cast<int>(this->getValue()[1]) << std::endl;
+		std::cout << "float: " << static_cast<float>(this->getValue()[1]) << ".0f" << std::endl;
+		std::cout << "double: " << static_cast<double>(this->getValue()[1]) << ".0" << std::endl;
+	}
+}
