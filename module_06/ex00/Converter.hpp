@@ -2,6 +2,7 @@
 # define CONVERTER_HPP
 
 # include <iostream>
+# include <sstream>
 # include <string>
 
 class Converter
@@ -22,14 +23,14 @@ class Converter
 		std::string	getValue() const;
 
 		// Methods
-		bool	isLiteral();
 		void	convertAndPrint();
-		bool	isPrintable(char c);
+		bool	isCharPrintable(int c);
+		void	convertChar();
+
 
 
 	private:
 		std::string value;
-
 };
 
 std::ostream &operator<<(std::ostream& out, Converter& object);

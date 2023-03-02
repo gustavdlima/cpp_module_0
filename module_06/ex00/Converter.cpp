@@ -44,34 +44,70 @@ std::string Converter::getValue() const
 	return this->value;
 }
 
-bool	Converter::isPrintable(char c)
+void	Converter::convertChar()
 {
-    return (c >= 32 && c <= 126); // printable characters have ASCII codes between 32 and 126
+	std::stringstream ss(this->getValue());
+	int	c;
+	ss >> c;
+	if (c < 0 || c > 255 || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
+	{
+		std::cout << "char: impossible" << std::endl;
+		return;
+	}
+	if (isCharPrintable(c))
+		std::cout << "char: '" << static_cast<char>(c)
+			<< "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
 }
 
-bool	Converter::isLiteral()
+// Check if the character is a printable ASCII characer
+bool	Converter::isCharPrintable(int c)
 {
-	if ((this->value.size() == 3) && (this->value[0] == '\'')
-		&& (this->value[2] == '\''))
+	if (c >= 32 && c <= 126)
 		return true;
-	return false;
+	else
+		return false;
 }
 
 void	Converter::convertAndPrint()
 {
-	if (this->isLiteral())
+	void		(Converter::*charPtr) (void) = 	&Converter::convertChar;
+	void		(Converter::*complainPtr[1]) (void) = {charPtr};
+
+	for (int i = 0; i < 1; i++)
 	{
-
-		const	char	*str = this->getValue().c_str();
-		const char	literal = static_cast<char>(str[0]);
-
-		if (this->isPrintable(literal))
-			std::cout << "char: " << literal << std::endl;
-		else
-			std::cout << "char: Non displayable" << std::endl;
-	} else {
-		std::cout << "int: " << static_cast<int>(this->getValue()[1]) << std::endl;
-		std::cout << "float: " << static_cast<float>(this->getValue()[1]) << ".0f" << std::endl;
-		std::cout << "double: " << static_cast<double>(this->getValue()[1]) << ".0" << std::endl;
+		(this->*complainPtr[i])();
 	}
+
+	// std::istringstream ss(this->getValue());
+
+	// char c;
+	// if (ss.clear(), ss.seekg(0), ss >> c && ss.eof())
+	// {
+	// 	std::cout << "char: "
+	// 		<< static_cast<unsigned char>(this->getValue()[1]) << std::endl;
+	// }
+	// else
+	// {
+	// 	std::cout << "char: Non displayable" << std::endl;
+	// }
+	// double d;
+	// if (ss >> d && ss.eof())
+	// {
+	// 	std::cout << "double: "
+	// 		<< static_cast<double>(this->getValue()[1]) << std::endl;
+	// }
+	// int i;
+	// if (ss.clear(), ss.seekg(0), ss >> i && ss.eof())
+	// {
+	// 	std::cout << "int: "
+	// 		<< static_cast<int>(this->getValue()[1]) << std::endl;
+	// }
+	// float f;
+	// if (ss.clear(), ss.seekg(0), ss >> f && ss.eof())
+	// {
+	// 	std::cout << "float: "
+	// 		<< static_cast<float>(this->getValue()[1]) << ".0f" << std::endl;
+	// }
 }
