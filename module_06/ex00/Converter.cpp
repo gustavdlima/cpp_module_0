@@ -29,14 +29,9 @@ Converter::~Converter()
 // Operators
 Converter & Converter::operator=(const Converter &assign)
 {
-	(void) assign;
+	if (this != &assign)
+		this->value = assign.getValue();
 	return *this;
-}
-
-std::ostream &operator<<(std::ostream& out, Converter& object)
-{
-	std::cout << "Value: " << object.getValue() << std::endl;
-	return out;
 }
 
 std::string Converter::getValue() const
@@ -70,40 +65,58 @@ bool	Converter::isCharPrintable(int c)
 		return false;
 }
 
+void	Converter::convertInt()
+{
+	long long	i = 0;
+
+	i = std::atoi(this->getValue().c_str());
+	if (i >= std::numeric_limits<int>::max() || i <= std::numeric_limits<int>::min() || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
+	{
+		std::cout << "int: impossible" << std::endl;
+		return;
+	}
+	else
+		std::cout << "int: " << static_cast<int>(i) << std::endl;
+}
+
+void	Converter::convertFloat()
+{
+	float	f;
+
+	f = std::atof(this->getValue().c_str());
+	if (f > std::numeric_limits<float>::max()
+		|| f < -(std::numeric_limits<float>::max()))
+	{
+		std::cout << "float: impossible" << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
+	}
+}
+
 void	Converter::convertAndPrint()
 {
 	void		(Converter::*charPtr) (void) = 	&Converter::convertChar;
-	void		(Converter::*complainPtr[1]) (void) = {charPtr};
+	void		(Converter::*intPtr) (void) = 	&Converter::convertInt;
+	void		(Converter::*floatPtr) (void) = 	&Converter::convertFloat;
+	void		(Converter::*complainPtr[3]) (void) = {charPtr, intPtr, floatPtr};
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		(this->*complainPtr[i])();
 	}
 
 	// std::istringstream ss(this->getValue());
 
-	// char c;
-	// if (ss.clear(), ss.seekg(0), ss >> c && ss.eof())
-	// {
-	// 	std::cout << "char: "
-	// 		<< static_cast<unsigned char>(this->getValue()[1]) << std::endl;
-	// }
-	// else
-	// {
-	// 	std::cout << "char: Non displayable" << std::endl;
-	// }
 	// double d;
 	// if (ss >> d && ss.eof())
 	// {
 	// 	std::cout << "double: "
 	// 		<< static_cast<double>(this->getValue()[1]) << std::endl;
 	// }
-	// int i;
-	// if (ss.clear(), ss.seekg(0), ss >> i && ss.eof())
-	// {
-	// 	std::cout << "int: "
-	// 		<< static_cast<int>(this->getValue()[1]) << std::endl;
-	// }
+
 	// float f;
 	// if (ss.clear(), ss.seekg(0), ss >> f && ss.eof())
 	// {
