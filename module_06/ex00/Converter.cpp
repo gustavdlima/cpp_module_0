@@ -70,7 +70,7 @@ void	Converter::convertInt()
 	long long	i = 0;
 
 	i = std::atoi(this->getValue().c_str());
-	if (i >= std::numeric_limits<int>::max() || i <= std::numeric_limits<int>::min() || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
+	if (i > std::numeric_limits<int>::max() || i < -(std::numeric_limits<int>::max() + 1) || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
 	{
 		std::cout << "int: impossible" << std::endl;
 		return;
@@ -96,31 +96,33 @@ void	Converter::convertFloat()
 	}
 }
 
+void	Converter::convertDouble()
+{
+	double	d;
+
+	d = std::atof(this->getValue().c_str());
+	if (d > std::numeric_limits<double>::max()
+		|| d < -(std::numeric_limits<double>::max()))
+	{
+		std::cout << "double: impossible" << std::endl;
+		return;
+	}
+	else
+	{
+		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << "f"<< std::endl;
+	}
+}
+
 void	Converter::convertAndPrint()
 {
 	void		(Converter::*charPtr) (void) = 	&Converter::convertChar;
 	void		(Converter::*intPtr) (void) = 	&Converter::convertInt;
 	void		(Converter::*floatPtr) (void) = 	&Converter::convertFloat;
-	void		(Converter::*complainPtr[3]) (void) = {charPtr, intPtr, floatPtr};
+	void		(Converter::*doublePtr) (void) = 	&Converter::convertDouble;
+	void		(Converter::*complainPtr[4]) (void) = {charPtr, intPtr, floatPtr, doublePtr};
 
 	for (int i = 0; i < 3; i++)
 	{
 		(this->*complainPtr[i])();
 	}
-
-	// std::istringstream ss(this->getValue());
-
-	// double d;
-	// if (ss >> d && ss.eof())
-	// {
-	// 	std::cout << "double: "
-	// 		<< static_cast<double>(this->getValue()[1]) << std::endl;
-	// }
-
-	// float f;
-	// if (ss.clear(), ss.seekg(0), ss >> f && ss.eof())
-	// {
-	// 	std::cout << "float: "
-	// 		<< static_cast<float>(this->getValue()[1]) << ".0f" << std::endl;
-	// }
 }

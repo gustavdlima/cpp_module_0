@@ -39,6 +39,7 @@ class Converter
 		void	convertChar();
 		void	convertInt();
 		void	convertFloat();
+		void	convertDouble();
 
 
 	private:
