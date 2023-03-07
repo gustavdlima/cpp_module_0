@@ -1,28 +1,19 @@
 #include "Converter.hpp"
 
 // Constructors
-Converter::Converter()
+Converter::Converter(std::string value) : value(value)
 {
-	std::cout << "\e[0;33mDefault Constructor called of Converter\e[0m" << std::endl;
-}
-
-Converter::Converter(char *value)
-{
-	this->value = value;
-	std::cout << "\e[0;33mDefault Constructor called of Converter\e[0m" << std::endl;
 }
 
 Converter::Converter(const Converter &copy)
 {
 	*this = copy;
-	std::cout << "\e[0;33mCopy Constructor called of Converter\e[0m" << std::endl;
 }
 
 
 // Destructor
 Converter::~Converter()
 {
-	std::cout << "\e[0;31mDestructor called of Converter\e[0m" << std::endl;
 }
 
 
@@ -41,19 +32,29 @@ std::string Converter::getValue() const
 
 void	Converter::convertChar()
 {
-	std::stringstream ss(this->getValue());
-	int	c;
-	ss >> c;
-	if (c < 0 || c > 255 || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
+	if (this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
 	{
 		std::cout << "char: impossible" << std::endl;
-		return;
+		return ;
 	}
-	if (isCharPrintable(c))
-		std::cout << "char: '" << static_cast<char>(c)
-			<< "'" << std::endl;
-	else
-		std::cout << "char: Non displayable" << std::endl;
+	if (this->getValue().length() == 1)
+	{
+		if (isCharPrintable(this->getValue()[0]) && !isdigit(this->getValue()[0]))
+			std::cout << "char: '" << static_cast<char>(this->getValue()[0])
+				<< "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		return ;
+	} else {
+		int i = atoi(this->getValue().c_str());
+
+		if (isCharPrintable(i))
+			std::cout << "char: '" << static_cast<char>(i)
+				<< "'" << std::endl;
+		else
+			std::cout << "char: Non displayable" << std::endl;
+		return ;
+	}
 }
 
 // Check if the character is a printable ASCII characer
@@ -67,49 +68,101 @@ bool	Converter::isCharPrintable(int c)
 
 void	Converter::convertInt()
 {
-	long long	i = 0;
 
-	i = std::atoi(this->getValue().c_str());
-	if (i > std::numeric_limits<int>::max() || i < -(std::numeric_limits<int>::max() + 1) || this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
+	if (this->getValue() == "nan" || this->getValue() == "inf" || this->getValue() == "-inf")
 	{
 		std::cout << "int: impossible" << std::endl;
 		return;
 	}
-	else
-		std::cout << "int: " << static_cast<int>(i) << std::endl;
+	if (this->getValue().length() == 1)
+	{
+		long long	i;
+		i = this->getValue()[0];
+		if (i > std::numeric_limits<int>::max()
+			|| i < -(std::numeric_limits<int>::max()))
+		{
+			std::cout << "int: impossible" << std::endl;
+			return;
+		}
+		else
+			std::cout << "int: " << static_cast<int>(i) << std::endl;
+	} else {
+		long long	i;
+		i = std::atoi(this->getValue().c_str());
+		if (i > std::numeric_limits<int>::max()
+			|| i < -(std::numeric_limits<int>::max()))
+		{
+			std::cout << "int: impossible" << std::endl;
+			return;
+		}
+		else
+			std::cout << "int: " << static_cast<int>(i) << std::endl;
+	}
 }
 
 void	Converter::convertFloat()
 {
-	float	f;
-
-	f = std::atof(this->getValue().c_str());
-	if (f > std::numeric_limits<float>::max()
-		|| f < -(std::numeric_limits<float>::max()))
+	if (this->getValue().length() == 1)
 	{
-		std::cout << "float: impossible" << std::endl;
+		float	f;
+		f = this->getValue()[0];
+		if (f > std::numeric_limits<float>::max()
+			|| f < -(std::numeric_limits<float>::max()))
+		{
+			std::cout << "float: impossible" << std::endl;
+			return;
+		}
+		else
+		{
+			std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
+		}
 		return;
-	}
-	else
-	{
-		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
+	} else {
+		float	f;
+		f = std::atof(this->getValue().c_str());
+		if (f > std::numeric_limits<float>::max()
+			|| f < -(std::numeric_limits<float>::max()))
+		{
+			std::cout << "float: impossible" << std::endl;
+			return;
+		}
+		else
+		{
+			std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
+		}
 	}
 }
 
 void	Converter::convertDouble()
 {
-	double	d;
-
-	d = std::atof(this->getValue().c_str());
-	if (d > std::numeric_limits<double>::max()
-		|| d < -(std::numeric_limits<double>::max()))
+	if (this->getValue().length() == 1)
 	{
-		std::cout << "double: impossible" << std::endl;
+		double	d;
+		d = this->getValue()[0];
+		if (d > std::numeric_limits<double>::max()
+			|| d < -(std::numeric_limits<double>::max()))
+		{
+			std::cout << "double: impossible" << std::endl;
+			return;
+		}
+		else
+		{
+			std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
+		}
 		return;
-	}
-	else
-	{
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << "f"<< std::endl;
+	} else {
+		double	d;
+		d = std::atof(this->getValue().c_str());
+		if (d > std::numeric_limits<double>::max()
+			|| d < -(std::numeric_limits<double>::max()))
+		{
+			std::cout << "double: impossible" << std::endl;
+			return;
+		}
+		else
+		{
+			std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
+		}
 	}
 }
 
@@ -121,7 +174,7 @@ void	Converter::convertAndPrint()
 	void		(Converter::*doublePtr) (void) = 	&Converter::convertDouble;
 	void		(Converter::*complainPtr[4]) (void) = {charPtr, intPtr, floatPtr, doublePtr};
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		(this->*complainPtr[i])();
 	}
