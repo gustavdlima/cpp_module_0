@@ -18,13 +18,11 @@ Data::Data(const Data &copy)
 		*this = copy;
 }
 
-
 // Destructor
 Data::~Data()
 {
 	std::cout << "\e[0;31mDestructor called of Data\e[0m" << std::endl;
 }
-
 
 // Operators
 Data & Data::operator=(const Data &assign)

@@ -113,9 +113,8 @@ void	Converter::convertFloat()
 			return;
 		}
 		else
-		{
-			std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
-		}
+			std::cout << "float: " << std::fixed << std::setprecision(1)
+				<< static_cast<float>(f) << "f"<< std::endl;
 		return;
 	} else {
 		float	f;
@@ -127,9 +126,8 @@ void	Converter::convertFloat()
 			return;
 		}
 		else
-		{
-			std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f"<< std::endl;
-		}
+			std::cout << "float: " << std::fixed << std::setprecision(1)
+				<< static_cast<float>(f) << "f"<< std::endl;
 	}
 }
 
@@ -146,9 +144,8 @@ void	Converter::convertDouble()
 			return;
 		}
 		else
-		{
-			std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
-		}
+			std::cout << "double: " << std::fixed << std::setprecision(1)
+				<< 	static_cast<double>(d) << std::endl;
 		return;
 	} else {
 		double	d;
@@ -160,9 +157,8 @@ void	Converter::convertDouble()
 			return;
 		}
 		else
-		{
-			std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
-		}
+			std::cout << "double: " << std::fixed << std::setprecision(1)
+				<< 	static_cast<double>(d) << std::endl;
 	}
 }
 
