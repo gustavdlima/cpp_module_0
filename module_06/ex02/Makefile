@@ -3,7 +3,7 @@ NAME		= data
 CC			= c++
 CFLAGS		= -Wall -Wextra -Werror -std=c++98 -g
 
-SRC			= A.cpp B.cpp C.cpp Base.cpp main.cpp
+SRC			= Base.cpp main.cpp
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $(<:%.cpp=%.o)
