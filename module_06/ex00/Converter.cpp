@@ -10,12 +10,10 @@ Converter::Converter(const Converter &copy)
 	*this = copy;
 }
 
-
 // Destructor
 Converter::~Converter()
 {
 }
-
 
 // Operators
 Converter & Converter::operator=(const Converter &assign)
