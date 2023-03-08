@@ -48,7 +48,9 @@ AForm *Intern::makeForm(std::string formName, std::string formTarget)
 			delete forms[i];
 		}
 	}
-	if (!result)
+	if (!result) {
 		std::cout << "the intern did not create the " << formName << std::endl;
+		return NULL;
+	}
 	return result;
 }

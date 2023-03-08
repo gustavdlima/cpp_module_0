@@ -96,7 +96,7 @@ bool	AForm::execute(const Bureaucrat &executor) const
 {
 	if (!this->isSigned)
 		throw AForm::FormNotSigned();
-	if (executor.getGrade() < this->gradeExecute)
+	if (executor.getGrade() > this->gradeExecute)
 		throw AForm::GradeTooLowException();
 	return true;
 }

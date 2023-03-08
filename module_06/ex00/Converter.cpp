@@ -76,19 +76,11 @@ void	Converter::convertInt()
 	{
 		long long	i;
 		i = this->getValue()[0];
-		if (i > std::numeric_limits<int>::max()
-			|| i < -(std::numeric_limits<int>::max()))
-		{
-			std::cout << "int: impossible" << std::endl;
-			return;
-		}
-		else
-			std::cout << "int: " << static_cast<int>(i) << std::endl;
+		std::cout << "int: " << static_cast<int>(i) << std::endl;
 	} else {
 		long long	i;
-		i = std::atoi(this->getValue().c_str());
-		if (i > std::numeric_limits<int>::max()
-			|| i < -(std::numeric_limits<int>::max()))
+		i = std::atol(this->getValue().c_str());
+		if (i > INT_MAX || i < INT_MIN)
 		{
 			std::cout << "int: impossible" << std::endl;
 			return;

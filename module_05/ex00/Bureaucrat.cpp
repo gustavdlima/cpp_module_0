@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat(std::string newName, int gradeValue) : name(newName), gra
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 {
-	(void) copy;
+	this->grade = copy.grade;
 	std::cout << "\e[0;33mCopy Constructor called of Bureaucrat\e[0m" << std::endl;
 }
 

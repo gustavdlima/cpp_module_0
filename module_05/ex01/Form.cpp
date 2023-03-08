@@ -64,10 +64,7 @@ int	Form::getGradeSign(void)
 	return this->gradeSign;
 }
 
-
 // Setters
-
-
 void	Form::setIsSigned(bool newValue)
 {
 	this->isSigned = newValue;
