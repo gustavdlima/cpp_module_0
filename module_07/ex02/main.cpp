@@ -6,10 +6,11 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/09 02:50:07 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/09 02:57:49 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include <sstream>
 # include <iostream>
 # include <string>
 # include "Array.hpp"
@@ -72,6 +73,18 @@ int main( void )
 		Array<char> a((unsigned int)3);
 		for (int i = 0; i < 3; i++) {
 			a[i] = (65 + i);
+			std::cout << "array[" << i << "]: " << a[i] << std::endl;
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "@@@@ STRING ARRAY TEST @@@@" << std::endl;
+		Array<std::string> a((unsigned int)3);
+		for (int i = 0; i < 3; i++) {
+			std::ostringstream oss;
+			oss << i;
+			std::string s = oss.str();
+			a[i] = std::string("string ") + s;
 			std::cout << "array[" << i << "]: " << a[i] << std::endl;
 		}
 	}
