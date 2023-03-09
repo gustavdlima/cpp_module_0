@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/09 02:30:36 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/09 02:50:07 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ int main( void )
 		std::cout << "@@@@ CONSTRUCTOR WITHOUT ARGUMENT TEST @@@@" << std::endl;
 		Array<char> a;
 		std::cout << "Array size: " << a.size() << std::endl;
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "@@@@ CONSTRUCTOR WITH ARGUMENT TEST @@@@" << std::endl;
+		Array<int> a((unsigned int)3);
+		for (int i = 0; i < 3; i++) {
+			a[i] = i;
+			std::cout << "array[" << i << "]: " << a[i] << std::endl;
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "@@@@ OUT OF BOUNDS TEST @@@@" << std::endl;
+		Array<int> a((unsigned int)3);
+		for (int i = 0; i < 3; i++) {
+			a[i] = i;
+		}
+		try {
+			std::cout << "array[3]: " << a[3] << std::endl;
+		} catch (std::exception &e) {
+			std::cout << "Exception: " << e.what() << std::endl;
+		}
 	}
 	{
 		std::cout << std::endl;
@@ -52,9 +74,6 @@ int main( void )
 			a[i] = (65 + i);
 			std::cout << "array[" << i << "]: " << a[i] << std::endl;
 		}
-	}
-	{
-
 	}
 	return 0;
 }

@@ -35,7 +35,7 @@ template <typename T>
 T &Array<T>::operator[](unsigned int index)
 {
 	if (index >= this->_size || index < 0)
-		throw std::exception();
+		throw Array<T>::IndexOutOfBoundsException();
 	return _array[index];
 }
 
@@ -49,5 +49,13 @@ std::ostream &operator<<(std::ostream& out, const Array<T> &array)
 
 template <typename T>
 int Array<T>::size() const { return (this->_size); }
+
+template <typename T>
+const char* Array<T>::IndexOutOfBoundsException::what() const throw()
+{
+	return "index is out of bounds";
+}
+
+
 
 #endif

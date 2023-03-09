@@ -8,6 +8,10 @@ template<class T>
 class Array
 {
 	public:
+		class IndexOutOfBoundsException : public std::exception {
+		public:
+			const char* what() const throw();
+		};
 		// Constructors
 		Array();
 		Array(unsigned int i);
