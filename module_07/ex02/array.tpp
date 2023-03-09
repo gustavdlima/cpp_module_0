@@ -2,7 +2,7 @@
 # define ARRAY_TPP
 
 #include "Array.hpp"
-
+// ############################################################# Constructors
 template <typename T>
 Array<T>::Array() : _array(new T[0]), _size(0){}
 
@@ -12,11 +12,13 @@ Array<T>::Array(unsigned int size) : _array(new T[size]), _size(size) {}
 template <typename T>
 Array<T>::Array(const Array &copy) { *this = copy; }
 
+// ############################################################# Destructor
 template <typename T>
 Array<T>::~Array() {
 	delete [] _array;
 }
 
+// ############################################################# Operators
 template <typename T>
 Array<T> &Array<T>::operator=(const Array &assign)
 {
@@ -47,6 +49,7 @@ std::ostream &operator<<(std::ostream& out, const Array<T> &array)
 	return out;
 }
 
+// ############################################################# Methods
 template <typename T>
 int Array<T>::size() const { return (this->_size); }
 
@@ -55,7 +58,5 @@ const char* Array<T>::IndexOutOfBoundsException::what() const throw()
 {
 	return "index is out of bounds";
 }
-
-
 
 #endif

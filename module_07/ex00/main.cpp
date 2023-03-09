@@ -6,13 +6,13 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/07 22:02:43 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:10:20 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include <iostream>
 # include <string>
-# include "FunctionsTemplate.hpp"
+# include "functionsTemplate.hpp"
 
 int main( void )
 {
