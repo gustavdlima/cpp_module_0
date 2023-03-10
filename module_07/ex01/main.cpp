@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/08 18:53:18 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:37:51 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,27 @@
 # include <string>
 # include "iter.hpp"
 
-int main( void )
+class Awesome
 {
-	{
-		std::cout << "@@@@ INT ARRAY TEST @@@@" << std::endl;
-		int array[] = { 0, 1, 42, 3, 42 };
-		::iter(array, 5, printValue);
-	}
-	{
-		std::cout << "@@@@ STRING ARRAY TEST @@@@" << std::endl;
-		std::string array[5] = { "a", "b", "c", "d", "e" };
-		::iter(array, 5, printValue);
-	}
-	{
-		std::cout << "@@@@ FLOAT ARRAY TEST @@@@" << std::endl;
-		float array[] = { 0.42f, 1.42f, 2.42f, 3.42f, 4.42f };
-		::iter(array, 5, printValue);
-	}
-	{
-		std::cout << "@@@@ DOUBLE ARRAY TEST @@@@" << std::endl;
-		double array[] = { 0.42, 1.42, 2.42, 3.42, 4.42 };
-		::iter(array, 5, printValue);
-	}
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
 
-	return 0;
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
+
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
+
+int main() {
+  int tab[] = { 0, 1, 2, 3, 4 };  // <--- I never understood why you can't write int[] tab. Wouldn't that make more sense?
+  Awesome tab2[5];
+
+  iter( tab, 5, print<int> );
+  iter( tab2, 5, print<Awesome> );
+
+  return 0;
 }
 
