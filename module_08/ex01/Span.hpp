@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <algorithm>
 
 class Span
 {
@@ -20,6 +21,14 @@ public:
 
 	// Exceptions
 	class FullException : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
+	class NoSpanException : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
+	class LessThanTwoNumbersException : public std::exception
 	{
 		virtual const char *what() const throw();
 	};
@@ -47,6 +56,8 @@ public:
 
 	// Methods
 	void addNumber(int number);
+	int shortestSpan();
+	int longestSpan();
 
 private:
 	unsigned int listSize;

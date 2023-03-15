@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/15 16:15:24 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:58:52 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int main()
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-	sp.addNumber(12);
 
-	// std::cout << sp.shortestSpan() << std::endl;
-	// std::cout << sp.longestSpan() << std::endl;
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 
 	return 0;
 }
