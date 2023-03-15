@@ -60,10 +60,10 @@ Span::iterator Span::end() { return this->list.end(); }
 // Methods
 void Span::addNumber(int number)
 {
-	if (this->getListSize() == this->list.size())
-		throw Span::FullException();
 	if (this->getListSize() == 0)
 		throw Span::NoSpanException();
+	if (this->getListSize() == this->list.size())
+		throw Span::FullException();
 	else
 	{
 		this->list.push_back(number);
@@ -73,8 +73,10 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan()
 {
+	if (this->getListSize() == 0)
+		throw Span::NoSpanException();
 	if (this->list.size() < 2)
-		throw std::exception();
+		throw Span::LessThanTwoNumbersException();
 	else
 	{
 		std::list<int> sortedList = this->list;
@@ -97,8 +99,10 @@ int Span::shortestSpan()
 
 int Span::longestSpan()
 {
+	if (this->getListSize() == 0)
+		throw Span::NoSpanException();
 	if (this->list.size() < 2)
-		throw std::exception();
+		throw Span::LessThanTwoNumbersException();
 	else
 	{
 		std::list<int> sortedList = this->list;
