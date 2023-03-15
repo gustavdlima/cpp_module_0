@@ -6,7 +6,7 @@
 /*   By: gusalves <gusalves@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:00:39 by gusalves          #+#    #+#             */
-/*   Updated: 2023/03/14 21:00:53 by gusalves         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:37:50 by gusalves         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,20 @@
 #include <vector>
 #include <deque>
 #include <list>
-#include "easyFind.hpp"
+#include "Span.hpp"
 
-int main(void)
+int main()
 {
+	Span sp = Span(5);
+
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
+	// std::cout << sp.shortestSpan() << std::endl;
+	// std::cout << sp.longestSpan() << std::endl;
+
 	return 0;
 }
