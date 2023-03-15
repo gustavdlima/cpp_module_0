@@ -3,9 +3,7 @@
 // Constructors
 Span::Span() {}
 
-Span::Span(unsigned int parameter) : listSize(parameter)
-{
-}
+Span::Span(unsigned int size) : listSize(size) {}
 
 Span::Span(const Span &copy) : listSize(copy.listSize), list(copy.list)
 {
@@ -36,16 +34,11 @@ std::ostream &operator<<(std::ostream &stream, const Span &object)
 // Getters
 unsigned int Span::getListSize() const { return this->listSize; }
 
-
 // Setters
 void Span::setListSize(unsigned int parameter) { this->listSize = parameter; }
 
-
 // Exceptions
-const char *Span::FullException::what() const throw()
-{
-	return "Span is full";
-}
+const char *Span::FullException::what() const throw() { return "Span is full"; }
 
 // Iterators
 Span::iterator::iterator(std::list<int>::iterator iter) : iter(iter) {}
@@ -55,12 +48,15 @@ Span::iterator Span::begin() { return this->list.begin(); }
 Span::iterator Span::end() { return this->list.end(); }
 
 // Methods
-void Span::addNumber(unsigned int number)
+void Span::addNumber(int number)
 {
-	if (number)
+	if (this->listSize == this->list.size())
 		throw Span::FullException();
 	else
-		this->listSize = number;
+	{
+		this->list.push_back(number);
+		std::cout << "Number added: " << number << std::endl;
+	}
 }
 
 // Span &Span::shortestSpan(Span &span, Span &span2)
