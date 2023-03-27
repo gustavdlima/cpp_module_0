@@ -85,10 +85,21 @@ void BitcoinExchange::printInputFile(void)
 void BitcoinExchange::addCurrency(std::multimap<std::string, float> &container, std::string date, std::string valueString)
 {
 	float value;
+	int year;
+	int month;
+	int day;
 
-	value = std::atof(valueString.c_str());
-	// std::cout << date << " => " << value << std::endl;
-	container.insert(std::pair<std::string, float>(date, value));
+	year = std::atoi(date.substr(0, 4).c_str());
+	month = std::atoi(date.substr(5, 2).c_str());
+	day = std::atoi(date.substr(8, 2).c_str());
+	if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
+		return ;
+	} else {
+		value = std::atof(valueString.c_str());
+		container.insert(std::pair<std::string, float>(date, value));
+	}
 }
 
 void BitcoinExchange::databaseSeeding(void)
@@ -133,7 +144,6 @@ void BitcoinExchange::readInputFile(std::string filename)
 			getline(ss, value, '|');
 			value.erase(0, value.find_first_not_of(" \t\n\r"));
         	date.erase(date.find_last_not_of(" \t\n\r") + 1);
-			std::cout << date << "=>" << value << std::endl;
 			addCurrency(this->_inputFile, date, value);
 		}
 		file.close();
@@ -144,6 +154,24 @@ void BitcoinExchange::readInputFile(std::string filename)
 	}
 }
 
+void BitcoinExchange::checkDate(std::string date, std::string date2)
+{
+
+	int year = std::atoi(date.substr(0, 4).c_str());
+	int month = std::atoi(date.substr(5, 2).c_str());
+	int day = std::atoi(date.substr(8, 2).c_str());
+
+	int year2 = std::atoi(date2.substr(0, 4).c_str());
+	int month2 = std::atoi(date2.substr(5, 2).c_str());
+	int day2 = std::atoi(date2.substr(8, 2).c_str());
+
+	if (year == year2 && month == month2 && (day == day2 || day == (day2 - 1)))
+	{
+		std::cout << "Date: " << date << std::endl;
+	}
+
+}
+
 void BitcoinExchange::execute(void)
 {
 	std::multimap<std::string, float>::iterator it;
@@ -151,14 +179,14 @@ void BitcoinExchange::execute(void)
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
-		// std::cout << it->second << std::endl;
 		for (it2 = this->_database.begin(); it2 != this->_database.end(); it2++)
 		{
+			checkDate(it->first, it2->first);
 			if (it->first == it2->first)
 			{
 				std::cout << it->first << std::endl;
-				// std::cout << it2->first << std::endl;
 			}
+			if (it->first
 		}
 	}
 }
