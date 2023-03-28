@@ -84,20 +84,23 @@ void BitcoinExchange::printInputFile(void)
 
 void BitcoinExchange::addCurrency(std::multimap<std::string, float> &container, std::string date, std::string valueString)
 {
-	float value;
 	int year;
 	int month;
 	int day;
+	float value;
 
 	year = std::atoi(date.substr(0, 4).c_str());
 	month = std::atoi(date.substr(5, 2).c_str());
 	day = std::atoi(date.substr(8, 2).c_str());
+	value = std::atof(valueString.c_str());
+
 	if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
-	{
 		std::cout << "Error: bad input => " << date << std::endl;
-		return ;
-	} else {
-		value = std::atof(valueString.c_str());
+	if (value > INT_MAX)
+		std::cout << "Error: too large a number" << std::endl;
+	if (value < 0)
+		std::cout << "Error: not a positive number" << std::endl;
+	else {
 		container.insert(std::pair<std::string, float>(date, value));
 	}
 }
@@ -154,22 +157,35 @@ void BitcoinExchange::readInputFile(std::string filename)
 	}
 }
 
-void BitcoinExchange::checkDate(std::string date, std::string date2)
+int BitcoinExchange::checkDate(std::string dbDate, std::string fileDate)
 {
 
-	int year = std::atoi(date.substr(0, 4).c_str());
-	int month = std::atoi(date.substr(5, 2).c_str());
-	int day = std::atoi(date.substr(8, 2).c_str());
+	int dbYear = std::atoi(dbDate.substr(0, 4).c_str());
+	int dbMonth = std::atoi(dbDate.substr(5, 2).c_str());
+	int dbDay = std::atoi(dbDate.substr(8, 2).c_str());
 
-	int year2 = std::atoi(date2.substr(0, 4).c_str());
-	int month2 = std::atoi(date2.substr(5, 2).c_str());
-	int day2 = std::atoi(date2.substr(8, 2).c_str());
+	int fileYear = std::atoi(fileDate.substr(0, 4).c_str());
+	int fileMonth = std::atoi(fileDate.substr(5, 2).c_str());
+	int fileDay = std::atoi(fileDate.substr(8, 2).c_str());
 
-	if (year == year2 && month == month2 && (day == day2 || day == (day2 - 1)))
+	if (dbYear  == fileYear && dbMonth == fileMonth && dbDay == fileDay )
 	{
-		std::cout << "Date: " << date << std::endl;
+		return 1;
 	}
+	if (dbYear == fileYear && dbMonth == fileMonth && dbDay < fileDay )
+	{
+		return 2;
+	}
+	// else if (year == year2 && month < month2)
+	// {
+	// 	std::cout << "Date: " << date << std::endl;
+	// }
+	// else if (year < year2)
+	// {
+	// 	std::cout << "Date: " << date << std::endl;
+	// }
 
+	return 0;
 }
 
 void BitcoinExchange::execute(void)
@@ -179,14 +195,26 @@ void BitcoinExchange::execute(void)
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
+		float exchangeRate = it->second;
 		for (it2 = this->_database.begin(); it2 != this->_database.end(); it2++)
 		{
-			checkDate(it->first, it2->first);
-			if (it->first == it2->first)
+			float value = it2->second;
+
+			switch (checkDate(it->first, it2->first))
 			{
-				std::cout << it->first << std::endl;
+				case 1:
+					std::cout << it->first << " => " << it->second << " = " << value * exchangeRate << std::endl;
+					break ;
+				case 2:
+					std::cout << it->first << " => " << it->second << " = " << value * exchangeRate << std::endl;
+					break ;
+				default:
+					break ;
 			}
-			if (it->first
+
+			// Break out of the inner loop when a match is found
+			if (checkDate(it->first, it2->first) != 0)
+				break;
 		}
 	}
 }

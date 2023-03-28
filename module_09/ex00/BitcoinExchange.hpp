@@ -51,7 +51,7 @@ public:
 	void addCurrency(std::multimap<std::string, float> &container, std::string date, std::string valueString);
 	void readInputFile(std::string filename);
 	void execute(void);
-	void checkDate(std::string date, std::string date2);
+	int checkDate(std::string dbDate, std::string fileDat);
 
 private:
 	std::multimap<std::string, float> _database;
