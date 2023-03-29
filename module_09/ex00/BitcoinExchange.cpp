@@ -46,25 +46,11 @@ const char *BitcoinExchange::couldNotOpenFileException::what() const throw()
 	return "Error: could not open file.";
 }
 
-const char *BitcoinExchange::invalidInputFileException::what() const throw()
-{
-	return "Error: bad input.";
-}
-
-const char *BitcoinExchange::invalidDateException::what() const throw()
-{
-	return "Error: invalid date.";
-}
-
-const char *BitcoinExchange::invalidNumberException::what() const throw()
-{
-	return "Error: not a positive number.";
-}
 
 // Member functions
 void BitcoinExchange::printDatabase(void)
 {
-	std::multimap<std::string, float>::iterator it;
+	std::multimap<std::string, double>::iterator it;
 
 	for (it = this->_database.begin(); it != this->_database.end(); it++)
 	{
@@ -74,7 +60,7 @@ void BitcoinExchange::printDatabase(void)
 
 void BitcoinExchange::printInputFile(void)
 {
-	std::multimap<std::string, float>::iterator it;
+	std::multimap<std::string, double>::iterator it;
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
@@ -82,47 +68,32 @@ void BitcoinExchange::printInputFile(void)
 	}
 }
 
-void BitcoinExchange::addCurrency(std::multimap<std::string, float> &container, std::string date, std::string valueString)
+bool BitcoinExchange::is_double(std::string &s)
 {
-	int year;
-	int month;
-	int day;
-	float value;
-
-	year = std::atoi(date.substr(0, 4).c_str());
-	month = std::atoi(date.substr(5, 2).c_str());
-	day = std::atoi(date.substr(8, 2).c_str());
-	value = std::atof(valueString.c_str());
-
-	if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
-		std::cout << "Error: bad input => " << date << std::endl;
-	if (value > INT_MAX)
-		std::cout << "Error: too large a number" << std::endl;
-	if (value < 0)
-		std::cout << "Error: not a positive number" << std::endl;
-	else {
-		container.insert(std::pair<std::string, float>(date, value));
-	}
+	char *endPtr = 0;
+	strtod(s.c_str(), &endPtr);
+	return (*endPtr == '\0');
 }
 
 void BitcoinExchange::databaseSeeding(void)
 {
-	std::ifstream file;
+	std::ifstream inputFile;
 	std::string line;
 	std::string date;
 	std::string value;
 
-	file.open("./db/data.csv");
-	if (file.is_open())
+	inputFile.open("./db/data.csv");
+	if (inputFile.is_open())
 	{
-		while (getline(file, line))
+		getline(inputFile, line);
+		while (getline(inputFile, line))
 		{
 			std::stringstream ss(line);
 			getline(ss, date, ',');
 			getline(ss, value, ',');
-			addCurrency(this->_database, date, value);
+			this->_database.insert(std::pair<std::string, double>(date, std::atof(value.c_str())));
 		}
-		file.close();
+		inputFile.close();
 	}
 	else
 	{
@@ -146,8 +117,10 @@ void BitcoinExchange::readInputFile(std::string filename)
 			getline(ss, date, '|');
 			getline(ss, value, '|');
 			value.erase(0, value.find_first_not_of(" \t\n\r"));
-        	date.erase(date.find_last_not_of(" \t\n\r") + 1);
-			addCurrency(this->_inputFile, date, value);
+			date.erase(date.find_last_not_of(" \t\n\r") + 1);
+			// std::cout << value << std::endl;
+			// std::cout << date << std::endl;
+			this->_inputFile.insert(std::pair<std::string, double>(date, std::atof(value.c_str())));
 		}
 		file.close();
 	}
@@ -157,9 +130,9 @@ void BitcoinExchange::readInputFile(std::string filename)
 	}
 }
 
-int BitcoinExchange::checkDate(std::string dbDate, std::string fileDate)
+int BitcoinExchange::validateContent(std::string dbDate, std::string fileDate,
+									double fileValue)
 {
-
 	int dbYear = std::atoi(dbDate.substr(0, 4).c_str());
 	int dbMonth = std::atoi(dbDate.substr(5, 2).c_str());
 	int dbDay = std::atoi(dbDate.substr(8, 2).c_str());
@@ -168,52 +141,57 @@ int BitcoinExchange::checkDate(std::string dbDate, std::string fileDate)
 	int fileMonth = std::atoi(fileDate.substr(5, 2).c_str());
 	int fileDay = std::atoi(fileDate.substr(8, 2).c_str());
 
-	if (dbYear  == fileYear && dbMonth == fileMonth && dbDay == fileDay )
-	{
+	if (fileYear < 2009 || fileYear > 2022 || fileMonth < 1
+		|| fileMonth > 12 || fileDay < 1 || fileDay > 31)
 		return 1;
-	}
-	if (dbYear == fileYear && dbMonth == fileMonth && dbDay < fileDay )
-	{
+	if (fileValue > 1000)
 		return 2;
-	}
-	// else if (year == year2 && month < month2)
-	// {
-	// 	std::cout << "Date: " << date << std::endl;
-	// }
-	// else if (year < year2)
-	// {
-	// 	std::cout << "Date: " << date << std::endl;
-	// }
-
+	if (fileValue < 0)
+		return 3;
+	if (dbYear  == fileYear && dbMonth == fileMonth && dbDay == fileDay )
+		return 4;
+	if (dbYear == fileYear && dbMonth == fileMonth && dbDay < fileDay )
+		return 5;
 	return 0;
 }
 
 void BitcoinExchange::execute(void)
 {
-	std::multimap<std::string, float>::iterator it;
-	std::multimap<std::string, float>::iterator it2;
+	std::multimap<std::string, double>::iterator it;
+	std::multimap<std::string, double>::reverse_iterator it2;
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
-		float exchangeRate = it->second;
-		for (it2 = this->_database.begin(); it2 != this->_database.end(); it2++)
+		for (it2 = this->_database.rbegin(); it2 != this->_database.rend(); it2++)
 		{
-			float value = it2->second;
-
-			switch (checkDate(it->first, it2->first))
+			switch (validateContent(it2->first, it->first,
+					it->second))
 			{
 				case 1:
-					std::cout << it->first << " => " << it->second << " = " << value * exchangeRate << std::endl;
+					std::cout << "Error: bad input => " << it->first
+						<< std::endl;
 					break ;
 				case 2:
-					std::cout << it->first << " => " << it->second << " = " << value * exchangeRate << std::endl;
+					std::cout << "Error: too large a number" << std::endl;
+					break ;
+				case 3:
+					std::cout << "Error: not a positive number" << std::endl;
+					break ;
+				case 4:
+					std::cout << it->first << " => " << it->second
+						<< " = " << (it->second * it2->second) << std::endl;
+					break ;
+				case 5:
+					std::cout << it->first << " => "<< it->second
+						<< " = " << (it->second * it2->second) << std::endl;
 					break ;
 				default:
 					break ;
 			}
 
 			// Break out of the inner loop when a match is found
-			if (checkDate(it->first, it2->first) != 0)
+			if (validateContent(it2->first, it->first,
+								it->second) != 0)
 				break;
 		}
 	}
