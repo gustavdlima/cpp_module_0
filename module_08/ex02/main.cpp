@@ -48,27 +48,33 @@ int main()
 			std::cout << *it << std::endl;
 			++it;
 		}
+
 		std::stack<int> s(mstack);
 	}
 	{
 		std::cout << std::endl;
 		std::cout << "LIST TEST" << std::endl;
 		std::list<int> mylist;
-		mylist.push_back(1);
-		std::cout << "push_back [1]" << std::endl;
-		printList(mylist);
-		mylist.push_front(2);
-		std::cout << "push_front [2]" << std::endl;
-		printList(mylist);
+
+		mylist.push_back(5);
+		mylist.push_back(17);
+		mylist.pop_back();
 		mylist.push_back(3);
-		std::cout << "push_back [3]" << std::endl;
-		printList(mylist);
-		mylist.push_front(4);
-		std::cout << "push_front [4]" << std::endl;
-		printList(mylist);
-		std::cout << "mylist back: [" << mylist.back() << "]" << std::endl;
-		std::cout << "mylist front: [" << mylist.front() << "]" << std::endl;
-		std::cout << "size of list: [" << mylist.size() << "]" << std::endl;
+		mylist.push_back(5);
+		mylist.push_back(737);
+		mylist.push_back(0);
+
+		std::list<int>::iterator it = mylist.begin();
+		std::list<int>::iterator ite = mylist.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+
+		std::list<int> s(mylist);
 	}
 	{
 		std::cout << std::endl;

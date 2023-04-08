@@ -14,8 +14,10 @@ public:
 		MutantStack();
 		MutantStack(const MutantStack &copy);
 
+
 	// Operators
 		MutantStack<T> &operator=(const MutantStack &copy);
+
 
 	// Iterators typedefs
 		typedef typename std::stack<T>::container_type::iterator
@@ -30,15 +32,12 @@ public:
 		iterator end();
 		reverse_iterator rbegin();
 		reverse_iterator rend();
-
 		const_iterator begin() const;
 		const_iterator end() const;
 		const_reverse_iterator rbegin() const;
 		const_reverse_iterator rend() const;
 
 };
-
-// Stream operators
 
 #include "MutantStack.tpp"
 

@@ -9,8 +9,10 @@ Span::Span(const Span &copy) : listSize(copy.listSize), list(copy.list)
 {
 }
 
+
 // Destructor
 Span::~Span() {}
+
 
 // Operators
 Span &Span::operator=(const Span &assign)
@@ -24,6 +26,7 @@ Span &Span::operator=(const Span &assign)
 	return *this;
 }
 
+
 // Stream operators
 std::ostream &operator<<(std::ostream &stream, const Span &object)
 {
@@ -31,11 +34,14 @@ std::ostream &operator<<(std::ostream &stream, const Span &object)
 	return stream;
 }
 
+
 // Getters
 unsigned int Span::getListSize() const { return this->listSize; }
 
+
 // Setters
 void Span::setListSize(unsigned int parameter) { this->listSize = parameter; }
+
 
 // Exceptions
 const char *Span::FullException::what() const throw() { return "Span is full"; }
@@ -50,12 +56,14 @@ const char *Span::LessThanTwoNumbersException::what() const throw()
 	return "Span has less than two numbers";
 }
 
+
 // Iterators
 Span::iterator::iterator(std::list<int>::iterator iter) : iter(iter) {}
 
 Span::iterator Span::begin() { return this->list.begin(); }
 
 Span::iterator Span::end() { return this->list.end(); }
+
 
 // Methods
 void Span::addNumber(int number)
@@ -113,5 +121,21 @@ int Span::longestSpan()
 
 		// subtract the minimum from the maximum to get the longest span
 		return (min - max) * -1;
+	}
+}
+
+void Span::addRange(int start, int end)
+{
+	if (this->getListSize() == 0)
+		throw Span::NoSpanException();
+	if (this->getListSize() == this->list.size())
+		throw Span::FullException();
+	else
+	{
+		for (int i = start; i <= end; i++)
+		{
+			this->list.push_back(i);
+			std::cout << "Number added: " << i << std::endl;
+		}
 	}
 }

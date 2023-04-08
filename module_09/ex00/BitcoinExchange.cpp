@@ -41,16 +41,16 @@ std::ostream &operator<<(std::ostream &out, const BitcoinExchange &exchange)
 }
 
 // Exceptions
+
 const char *BitcoinExchange::couldNotOpenFileException::what() const throw()
 {
-	return "Error: could not open file.";
+	return "Error: could not open file";
 }
-
 
 // Member functions
 void BitcoinExchange::printDatabase(void)
 {
-	std::multimap<std::string, double>::iterator it;
+	std::multimap<std::string, std::string>::iterator it;
 
 	for (it = this->_database.begin(); it != this->_database.end(); it++)
 	{
@@ -60,7 +60,7 @@ void BitcoinExchange::printDatabase(void)
 
 void BitcoinExchange::printInputFile(void)
 {
-	std::multimap<std::string, double>::iterator it;
+	std::multimap<std::string, std::string>::iterator it;
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
@@ -68,131 +68,175 @@ void BitcoinExchange::printInputFile(void)
 	}
 }
 
-bool BitcoinExchange::is_double(std::string &s)
+// bool BitcoinExchange::is_double(std::string &s)
+// {
+// 	char *endPtr = 0;
+// 	strtod(s.c_str(), &endPtr);
+// 	return (*endPtr == '\0');
+// }
+
+void BitcoinExchange::closeFile(std::ifstream &file)
+{
+	file.close();
+}
+
+void BitcoinExchange::openFile(std::ifstream &file, std::string filename)
+{
+	std::cout << "Opening file..." << filename << std::endl;
+	file.open(filename.c_str());
+	if (!file.is_open())
+		throw BitcoinExchange::couldNotOpenFileException();
+}
+
+void BitcoinExchange::deleteSpaces(std::string &s)
+{
+	std::string::size_type pos = s.find(' ');
+
+	if (pos != std::string::npos)
+	{
+		s.erase(pos, 1);
+		deleteSpaces(s);
+	}
+}
+
+void BitcoinExchange::readFile(std::ifstream &file,
+							std::multimap<std::string, std::string> &container, char charDelimiter)
+{
+	std::string line;
+	std::string date;
+	std::string value;
+
+	if (file.is_open())
+	{
+		while (getline(file, line))
+		{
+			std::stringstream ss(line);
+			getline(ss, date, charDelimiter);
+			getline(ss, value, charDelimiter);
+			deleteSpaces(date);
+			populateContainer(container, date, value);
+		}
+	}
+	else
+		throw BitcoinExchange::couldNotOpenFileException();
+}
+
+void BitcoinExchange::populateContainer(std::multimap<std::string, std::string>
+							&container, std::string date, std::string value)
+{
+	container.insert(std::pair<std::string, std::string>(date, value));
+}
+
+void BitcoinExchange::databaseContainerSeeding(void)
+{
+	std::ifstream inputFile;
+
+	openFile(inputFile, "./db/data.csv");
+	readFile(inputFile, this->_database, ',');
+	closeFile(inputFile);
+}
+
+void BitcoinExchange::inputFileContainerSeeding(std::string filename)
+{
+	std::ifstream inputFile;
+
+	openFile(inputFile, filename);
+	readFile(inputFile, this->_inputFile, '|');
+	closeFile(inputFile);
+}
+
+bool BitcoinExchange::isDouble(std::string &s)
 {
 	char *endPtr = 0;
 	strtod(s.c_str(), &endPtr);
 	return (*endPtr == '\0');
 }
 
-void BitcoinExchange::databaseSeeding(void)
+bool BitcoinExchange::isDateValid(std::string &s)
 {
-	std::ifstream inputFile;
-	std::string line;
-	std::string date;
-	std::string value;
+	int year = std::atoi(s.substr(0, 4).c_str());
+	int month = std::atoi(s.substr(5, 2).c_str());
+	int day = std::atoi(s.substr(8, 2).c_str());
 
-	inputFile.open("./db/data.csv");
-	if (inputFile.is_open())
+	if (year < 2009 || year > 2022 || month < 1
+		|| month > 12 || day < 1 || day > 31)
+		return false;
+	return true;
+}
+
+bool BitcoinExchange::isValueValid(std::string &s)
+{
+	if (std::atof(s.c_str()) > 1000 || std::atof(s.c_str()) < 0)
+		return false;
+	return true;
+}
+
+void BitcoinExchange::compareToPrint(std::multimap<std::string,
+		std::string>::iterator &fileIterator, std::multimap<std::string,
+		std::string>::const_reverse_iterator &dbIterator)
+{
+	int dbYear = std::atoi(dbIterator->first.substr(0, 4).c_str());
+	int dbMonth = std::atoi(dbIterator->first.substr(5, 2).c_str());
+	int dbDay = std::atoi(dbIterator->first.substr(8, 2).c_str());
+	int fileYear = std::atoi(fileIterator->first.substr(0, 4).c_str());
+	int fileMonth = std::atoi(fileIterator->first.substr(5, 2).c_str());
+	int fileDay = std::atoi(fileIterator->first.substr(8, 2).c_str());
+
+	double fileValueDouble = std::atof(fileIterator->second.c_str());
+	double dbValueDouble = std::atof(dbIterator->second.c_str());
+
+	if (dbYear == fileYear && dbMonth == fileMonth && dbDay == fileDay)
 	{
-		getline(inputFile, line);
-		while (getline(inputFile, line))
-		{
-			std::stringstream ss(line);
-			getline(ss, date, ',');
-			getline(ss, value, ',');
-			this->_database.insert(std::pair<std::string, double>(date, std::atof(value.c_str())));
-		}
-		inputFile.close();
+		std::cout << fileIterator->first << " => " << fileIterator->second
+			<< " = " << (fileValueDouble * dbValueDouble) << std::endl;
+		return ;
 	}
-	else
+	else if (dbYear == fileYear && dbMonth == fileMonth
+				&& fileDay == (dbDay - 1))
 	{
-		throw BitcoinExchange::couldNotOpenFileException();
+		dbIterator++;
+		std::cout << fileIterator->first << " => " << fileIterator->second
+			<< " = " << (fileValueDouble * dbValueDouble) << std::endl;
+		return ;
 	}
 }
 
-void BitcoinExchange::readInputFile(std::string filename)
+bool BitcoinExchange::validateContent(std::string fileDate,
+									std::string fileValue)
 {
-	std::ifstream file;
-	std::string line;
-	std::string date;
-	std::string value;
-
-	file.open(filename.c_str());
-	if (file.is_open())
+	if (!BitcoinExchange::isDouble(fileValue))
 	{
-		while (getline(file, line))
-		{
-			std::stringstream ss(line);
-			getline(ss, date, '|');
-			getline(ss, value, '|');
-			value.erase(0, value.find_first_not_of(" \t\n\r"));
-			date.erase(date.find_last_not_of(" \t\n\r") + 1);
-			// std::cout << value << std::endl;
-			// std::cout << date << std::endl;
-			this->_inputFile.insert(std::pair<std::string, double>(date, std::atof(value.c_str())));
-		}
-		file.close();
+		std::cout << "Error: not a double or int value." << std::endl;
+		return false;
 	}
-	else
+	else if (!BitcoinExchange::isDateValid(fileDate))
 	{
-		throw BitcoinExchange::couldNotOpenFileException();
+		std::cout << "Error: bad input => " << fileDate << std::endl;
+		return false;
 	}
-}
-
-int BitcoinExchange::validateContent(std::string dbDate, std::string fileDate,
-									double fileValue)
-{
-	int dbYear = std::atoi(dbDate.substr(0, 4).c_str());
-	int dbMonth = std::atoi(dbDate.substr(5, 2).c_str());
-	int dbDay = std::atoi(dbDate.substr(8, 2).c_str());
-
-	int fileYear = std::atoi(fileDate.substr(0, 4).c_str());
-	int fileMonth = std::atoi(fileDate.substr(5, 2).c_str());
-	int fileDay = std::atoi(fileDate.substr(8, 2).c_str());
-
-	if (fileYear < 2009 || fileYear > 2022 || fileMonth < 1
-		|| fileMonth > 12 || fileDay < 1 || fileDay > 31)
-		return 1;
-	if (fileValue > 1000)
-		return 2;
-	if (fileValue < 0)
-		return 3;
-	if (dbYear  == fileYear && dbMonth == fileMonth && dbDay == fileDay )
-		return 4;
-	if (dbYear == fileYear && dbMonth == fileMonth && dbDay < fileDay )
-		return 5;
-	return 0;
+	else if (!BitcoinExchange::isValueValid(fileValue))
+	{
+		std::cout << "Error: value must be either a float or a positive integer between 0 and 1000." << std::endl;
+		return false;
+	}
+	return true;
 }
 
 void BitcoinExchange::execute(void)
 {
-	std::multimap<std::string, double>::iterator it;
-	std::multimap<std::string, double>::reverse_iterator it2;
+	std::multimap<std::string, std::string>::iterator it;
+	std::multimap<std::string, std::string>::const_reverse_iterator it2;
 
 	for (it = this->_inputFile.begin(); it != this->_inputFile.end(); it++)
 	{
-		for (it2 = this->_database.rbegin(); it2 != this->_database.rend(); it2++)
+		if (validateContent(it->first, it->second))
 		{
-			switch (validateContent(it2->first, it->first,
-					it->second))
+			std::cout << "Reading line: *******************" << std::endl;
+			for (it2 = this->_database.rbegin(); it2 != this->_database.rend();
+					it2++)
 			{
-				case 1:
-					std::cout << "Error: bad input => " << it->first
-						<< std::endl;
-					break ;
-				case 2:
-					std::cout << "Error: too large a number" << std::endl;
-					break ;
-				case 3:
-					std::cout << "Error: not a positive number" << std::endl;
-					break ;
-				case 4:
-					std::cout << it->first << " => " << it->second
-						<< " = " << (it->second * it2->second) << std::endl;
-					break ;
-				case 5:
-					std::cout << it->first << " => "<< it->second
-						<< " = " << (it->second * it2->second) << std::endl;
-					break ;
-				default:
-					break ;
+				compareToPrint(it, it2);
 			}
-
-			// Break out of the inner loop when a match is found
-			if (validateContent(it2->first, it->first,
-								it->second) != 0)
-				break;
 		}
 	}
 }

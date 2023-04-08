@@ -23,9 +23,10 @@ int main( void )
 		std::cout << "@@@@ VECTOR TEST @@@@" << std::endl;
 		std::vector<int> myVector;
 
+		myVector.push_back(30);
  		myVector.push_back(10);
 		myVector.push_back(20);
-		myVector.push_back(30);
+		myVector.push_back(42);
 
 		try {
 			// INVALID VALUE
@@ -82,6 +83,7 @@ int main( void )
 		for (int i = 0; i < 10; i++) {
 			mylist.push_back(0);
 		}
+
 		std::list<int>::iterator it = mylist.begin();
 		std::advance(it, 5);
 		*it = 42;
@@ -110,7 +112,6 @@ int main( void )
 			std::cout << e.what() << std::endl;
 			std::cout << std::endl;
 		}
-
 	}
 	return 0;
 }

@@ -9,15 +9,17 @@
 class Span
 {
 public:
+
 	// Iterator
 	class iterator
 	{
-	public:
-		iterator(std::list<int>::iterator iter);
+		public:
+			iterator(std::list<int>::iterator iter);
 
-	private:
-		std::list<int>::iterator iter;
+		private:
+			std::list<int>::iterator iter;
 	};
+
 
 	// Exceptions
 	class FullException : public std::exception
@@ -33,36 +35,45 @@ public:
 		virtual const char *what() const throw();
 	};
 
+
 	// Constructors
 	Span();
 	Span(unsigned int parameter);
 	Span(const Span &copy);
 
+
 	// Destructor
 	~Span();
+
 
 	// Operators
 	Span &operator=(const Span &assign);
 
+
 	// Getters
 	unsigned int getListSize() const;
 
+
 	// Setters
 	void setListSize(unsigned int size);
+
 
 	// Iterators
 	iterator begin();
 	iterator end();
 
+
 	// Methods
-	void addNumber(int number);
-	int shortestSpan();
-	int longestSpan();
+	int		shortestSpan();
+	int		longestSpan();
+	void	addNumber(int number);
+	void	addRange(int start, int end);
 
 private:
 	unsigned int listSize;
 	std::list<int> list;
 };
+
 
 // Stream operators
 std::ostream &operator<<(std::ostream &stream, const Span &object);

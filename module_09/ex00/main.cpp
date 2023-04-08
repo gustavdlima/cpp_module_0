@@ -10,12 +10,9 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 	BitcoinExchange exchange;
-	exchange.databaseSeeding();
-	// exchange.printDatabase();
-	exchange.readInputFile(argv[1]);
-	std::cout << std::endl;
-	// exchange.printInputFile();
-	std::cout << std::endl;
+
+	exchange.databaseContainerSeeding();
+	exchange.inputFileContainerSeeding(argv[1]);
 	exchange.execute();
 	return (0);
 }

@@ -10,6 +10,7 @@ MutantStack<T>::MutantStack(const MutantStack<T> &copy) : std::stack<T>()
 	*this = copy;
 }
 
+
 // Operators
 template <typename T>
 MutantStack<T> &MutantStack<T>::operator=(const MutantStack &copy)
@@ -20,6 +21,7 @@ MutantStack<T> &MutantStack<T>::operator=(const MutantStack &copy)
 	}
 	return *this;
 }
+
 
 // Iterators
 template <typename T>
